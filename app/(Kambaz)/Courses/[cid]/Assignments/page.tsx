@@ -44,7 +44,7 @@ export default function Assignments() {
 
             <ul id="wd-assignment-list">
                 <li className="wd-assignment-list-item">
-                    <Link href="/Courses/1234/Assignments/123"
+                    <Link href="/Courses/1234/Assignments/126"
                         className="wd-assignment-link">
                             Q1
                     </Link> <br/>
@@ -53,7 +53,7 @@ export default function Assignments() {
                 </li>
 
                 <li className="wd-asslignment-list-item">
-                    <Link href="/Courses/1234/Assignments/124"
+                    <Link href="/Courses/1234/Assignments/127"
                         className="wd-assignment-link">
                             Q2
                     </Link> <br/>
@@ -62,7 +62,7 @@ export default function Assignments() {
                 </li>
 
                 <li className="wd-asslignment-list-item">
-                    <Link href="/Courses/1234/Assignments/125"
+                    <Link href="/Courses/1234/Assignments/128"
                         className="wd-assignment-link">
                             Q3
                     </Link> <br/>
@@ -79,7 +79,7 @@ export default function Assignments() {
 
             <ul id="wd-assignment-list">
                 <li className="wd-assignment-list-item">
-                    <Link href="/Courses/1234/Assignments/123"
+                    <Link href="/Courses/1234/Assignments/129"
                         className="wd-assignment-link">
                             Exam1
                     </Link> <br/>
@@ -88,7 +88,7 @@ export default function Assignments() {
                 </li>
 
                 <li className="wd-asslignment-list-item">
-                    <Link href="/Courses/1234/Assignments/124"
+                    <Link href="/Courses/1234/Assignments/130"
                         className="wd-assignment-link">
                             Exam2
                     </Link> <br/>
@@ -103,7 +103,7 @@ export default function Assignments() {
             </h3>
             <ul id="wd-assignment-list">
                 <li className="wd-assignment-list-item">
-                    <Link href="/Courses/1234/Assignments/123"
+                    <Link href="/Courses/1234/Assignments/131"
                         className="wd-assignment-link">
                             Final Project
                     </Link> <br/>
