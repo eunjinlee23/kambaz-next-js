@@ -4,7 +4,7 @@ export default function Dashboard() {
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
-            <h2 id="wd-dashboard-published">Published Courses (12)</h2> <hr />
+            <h2 id="wd-dashboard-published">Published Courses (7)</h2> <hr />
             <div id="wd-dashboard-courses">
                 <div className="wd-dashboard-course">
                     <Link href="/Courses/1234" className="wd-dashboard-course-link">
@@ -79,17 +79,6 @@ export default function Dashboard() {
                             <h5> CS3315 Introduction to Mixed Reality </h5>
                             <p className="wd-dashboard-course-title">
                                 Introduction of mixed reality
-                            </p>
-                            <button> Go </button>
-                        </div>
-                    </Link>
-
-                    <Link href="/Courses/4223" className="wd-dashboard-course-link">
-                        <Image alt="courseimg" src="/images/reactjs.jpg" width={200} height={150} />
-                        <div>
-                            <h5> CS 4223 Artificial Intelligence </h5>
-                            <p className="wd-dashboard-course-title">
-                                Artificial Intelligence and development
                             </p>
                             <button> Go </button>
                         </div>
