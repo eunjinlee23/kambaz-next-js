@@ -90,11 +90,7 @@ export default function AssignmentEditor() {
                     </td>
                     <td>
                         <label htmlFor="wd-assign-to">Assign to</label> <br />
-                        <select id="wd-assign-to">
-                            <option value="EVERYONE" selected>Everyone</option>
-                            <option value="JohnDoe">John Doe</option>
-                            <option value="JaneDoe">Jane Doe</option>
-                        </select> <br />
+                        <input id="wd-assign-to" defaultValue="Everyone" /> <br />
                         <br />
 
                         <label htmlFor="wd-due-date">Due</label> <br />
