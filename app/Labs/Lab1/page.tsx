@@ -294,7 +294,7 @@ h6 is the smallest heading.
                 to get dummy text<br/>
 
                 Please
-                <a href="https://github.com/eunjinlee23/kambaz-next-js.git" id="wd-github">click here</a>
+                <a href="https://github.com/eunjinlee23/kambaz-next-js" id="wd-github">click here</a>
                 to navigate my github code repository
             </div>
         </div>
