@@ -59,7 +59,7 @@ The Kamvaz application should include a link to navigate back to the landing pag
                         <option value="PERCENTAGE" defaultChecked>Percentage</option>
                         <option value="POINTS">Points</option>
                         <option value="LETTERGRADE">Letter Grade</option>
-                    </Form.Select>f
+                    </Form.Select>
                 </Col>
         </Row>
 
