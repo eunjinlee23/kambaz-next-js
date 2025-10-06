@@ -1,136 +1,129 @@
+"use client";
+ 
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import InputGroupText from "react-bootstrap/esm/InputGroupText";
+import { FaCalendarAlt } from "react-icons/fa";
+import EditorButtons from "./EditorButtons";
+import { RxCross2 } from "react-icons/rx";
+
+
+ 
 export default function AssignmentEditor() {
-    return (
-        <div id="wd-assignments-editor">
-            <label htmlFor="wd-name"><h3>Assignment Name</h3></label>
-            <input id="wd-name" defaultValue="A1 - ENV + HTML" /><br /><br />
+  return (
+<div id="wd-assignments-editor">
+    <Form className="mb-4">
+        <Form.Group className="mb-3" id="wd-name">
+        <Form.Label>Assignment Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter assignment name" defaultValue="A1"/>
+        </Form.Group>
 
-            <textarea id="wd-description" cols={45} rows={10}>
-                The assignment is available online Submit a link to the landing page of
-                your Web application running on Netlify. The landing page should
-                include the following: Your full name and section Links to each of the lab
-                assignments Link to the Kanbas application
-                Links to all relevant source code repositories
-                The Kanbas application should include a link to navigate back to the landing
-                page.
-            </textarea> <br />
-            <br />
-            <table>
-                <tbody>
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-points">Points</label>
-                    </td>
-                    <td>
-                        <input type="number" id="wd-points" defaultValue={100} />
-                    </td>
-                </tr> <br/>
+        <Form.Control as="textarea" rows={14} 
+            defaultValue={`
+The assignment is available online. 
 
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-group">Assignment Group</label>
-                    </td>
-                    <td>
-                        <select id="wd-group">
-                            <option value="ASSIGNMENTS">ASSIGNMENTS</option>
-                            <option value="QUIZZES">QUIZZES</option>
-                            <option value="EXAMS">EXAMS</option>
-                            <option value="PROJECTS">PROJECTS</option>
-                        </select>
-                    </td>
-                </tr> <br />
+Submit a link to the landing page of your Web application running on Netlify.
 
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-display-grade-as">Display Grade as</label>
-                    </td>
-                    <td>
-                        <select id="wd-display-grade-as">
-                            <option value="PERCENTAGE">Percentage</option>
-                            <option value="POINTS">Points</option>
-                            <option value="LETTERGRADE">Letter Grade</option>
-                        </select>
-                    </td>
-                </tr> <br />
+The landing page should include the following:
 
-                <tr>
-                    <td align="right" valign="top">
-                    <label htmlFor="wd-submission-type">Submission Type</label>
-                    </td>
-                
-                    <td>
-                        <select id="wd-submission-type">
-                            <option value="Online">Online</option>
-                            <option value="External">External Tool</option>
-                            <option value="Offline">Offline</option>
-                        </select> <br />
-                        <br />
+    • Your full name and section
+    • Links to each of the lab assignments
+    • Link to the Kanbas application
+    • Links to all relevant source code repositories
+    
+The Kamvaz application should include a link to navigate back to the landing page.`}/>
+    </Form>
 
-                        <label id="wd-online-entry">Online Entry Options</label> <br />
+    <div className="pe-2 ">
+        <Row className="mb-3" id="wd-points">
+            <Form.Label sm="4" className="text-end" column>Points</Form.Label>
+            <Col sm="8"> <Form.Control type="number" defaultValue={100} /> </Col>
+        </Row>
 
-                        <input type="checkbox" name="check-online-entry-options" id="wd-text-entry" />
-                        <label htmlFor="wd-text-entry">Text Entry</label> <br />
+        <Row className="mb-3" id="wd-group">
+            <Form.Label sm="4" className="text-end" column>Assignment Group</Form.Label>
+            <Col sm="8">
+                <Form.Select>
+                    <option value="ASSIGNMENTS" defaultChecked>ASSIGNMENTS</option>
+                    <option value="QUIZZES">QUIZZES</option>
+                    <option value="EXAMS">EXAMS</option>
+                    <option value="PROJECTS">PROJECTS</option>
+                </Form.Select>
+            </Col>
+        </Row>
 
-                        <input type="checkbox" name="check-online-entry-options" id="wd-website-url" />
-                        <label htmlFor="wd-website-url">Website URL</label> <br />
+        <Row className="mb-3" id="wd-display-grade-as">
+            <Form.Label sm="4" className="text-end" column>Display Grade as</Form.Label>
+                <Col sm="8">
+                    <Form.Select>
+                        <option value="PERCENTAGE" defaultChecked>Percentage</option>
+                        <option value="POINTS">Points</option>
+                        <option value="LETTERGRADE">Letter Grade</option>
+                    </Form.Select>f
+                </Col>
+        </Row>
 
-                        <input type="checkbox" name="check-online-entry-options" id="wd-media-recordings" />
-                        <label htmlFor="wd-media-recordings">Media Recordings</label> <br />
+        <Row as={Row} className="mb-3" id="wd-submission-type">
+            <Form.Label sm="4" className="text-end" column>Submission Type</Form.Label>
+            <Col sm="8">
+                <fieldset className="assignment-field-border pt-3 pb-3 ps-3 pe-3">
+                    <Form.Select id="wd-submission-type" className="mb-4">
+                        <option value="Online">Online</option>
+                        <option value="External">External Tool</option>
+                        <option value="Offline">Offline</option>
+                    </Form.Select>
 
-                        <input type="checkbox" name="check-online-entry-options" id="wd-student-annotation" />
-                        <label htmlFor="wd-student-annotation">Student Annotation</label> <br />
+                    <Form.Group id="wd-online-entry">
+                        <Form.Label className="mb-3"><b>Online Entry Options</b></Form.Label>
+                        <Form.Check className="mb-3" label="Text Entry" name="check-online-entry-options" id="wd-text-entry" />
+                        <Form.Check className="mb-3" label="Website URL" name="check-online-entry-options" id="wd-website-url" />
+                        <Form.Check className="mb-3" label="Media Recordings" name="check-online-entry-options" id="wd-media-recordings" />
+                        <Form.Check className="mb-3" label="Student Annotation" name="check-online-entry-options" id="wd-student-annotation" />
+                        <Form.Check label="wd-file-upload" name="check-online-entry-options" id="wd-file-upload" />        
+                    </Form.Group>   
+                </fieldset>
+            </Col>
+        </Row>
 
-                        <input type="checkbox" name="check-online-entry-options" id="wd-file-upload" />
-                        <label htmlFor="wd-file-upload">File Uploads</label> <br />
-                    </td>
-                </tr> <br />
+        <Row as={Row} id="wd-assign-to">  
+            <Form.Label sm="4" className="text-end" column>Assign</Form.Label>
+            <Col>
+                <fieldset className="assignment-field-border pt-3 pb-3 ps-3 pe-3">
+                    <Form.Group className="mb-3">
+                        <Form.Label><b>Assign To</b></Form.Label>
+                        <Form.Group className="assignment-field-border pt-2 pb-2 ps-2 pe-2">
+                            <InputGroup>
+                                <InputGroupText>Everyone</InputGroupText>
+                                <InputGroupText className="border-left-none"><RxCross2 className="fs-6"/></InputGroupText>
+                            </InputGroup>
+                        </Form.Group>
+                    </Form.Group>
 
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-assign-to">Assign</label>
-                    </td>
-                    <td>
-                        <label htmlFor="wd-assign-to">Assign to</label> <br />
-                        <input id="wd-assign-to" defaultValue="Everyone" /> <br />
-                        <br />
+                    <Form.Group id="wd-due-date" className="mb-3">
+                        <Form.Label><b>Due</b></Form.Label>
+                        <Form.Control type="date" defaultValue="2024-05-13" />
+                    </Form.Group>
 
-                        <label htmlFor="wd-due-date">Due</label> <br />
-                        <input type="date" 
-                                value="2024-05-13"
-                                id="wd-due-date" /> <br />
-                        <br />
-                        <table>
-                            <tr>
-                                <td>
-                                    <label htmlFor="wd-available-from">Available From</label> <br />
-                                    <input type="date"
-                                            value="2024-05-05"
-                                            id="wd-available-from" />
-                                </td>
-                                <td>
-                                    <label htmlFor="wd-available-until">Until</label> <br />
-                                    <input type="date"
-                                            value="2024-05-20"
-                                            id="wd-available-until"></input>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr> <br />
-                
-                <tr>
-                    <td colSpan={2}><hr /></td>
-                </tr>
+                    <Row>
+                        <Col className="pe-1" id="wd-available-from">
+                            <Form.Label><b>Available from</b></Form.Label>
+                            <Form.Control type="date" defaultValue="2024-05-13" />
+                        </Col>
+                        <Col className="ps-1" id="wd-available-until">
+                            <Form.Label><b>Until</b></Form.Label>
+                            <Form.Control type="date" defaultValue="2024-05-13" />
+                        </Col>
+                    </Row>
+                </fieldset>
+            </Col>
+        </Row>
+    </div>
 
-                <tr>
-                    <td></td>
-                    <td align="right" valign="top">
-                        <button>Cancel</button>
-                        <button>Save</button>
-                    </td>
-                </tr>
-        
-                </tbody>
-            </table>
-        </div>
-    )
+    <br/><hr />
+
+    <EditorButtons />
+    
+
+</div>
+  );
 }
