@@ -21,10 +21,10 @@ export default function ModulesControls() {
                     <GreenCheckmark /> Publish modules only
                 </DropdownItem>
                 <DropdownItem id="wd-unpublish-all-modules-and-items">
-                    <FaBan /> Unpublish all modules and items
+                    <FaBan className="fs-5"/> Unpublish all modules and items
                 </DropdownItem>
                 <DropdownItem id="wd-unpublish-modules-only">
-                    <FaBan /> Unpublish modules only
+                    <FaBan className="fs-5"/> Unpublish modules only
                 </DropdownItem>
             </DropdownMenu>
         </Dropdown>
