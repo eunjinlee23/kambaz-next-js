@@ -19,7 +19,6 @@ import BootstrapTables from "./BootstrapTables";
 import BootstrapLists from "./BootstrapLists";
 import BootstrapForms from "./BootstrapForms";
 import BootstrapNavigation from "./BootstrapNavigation";
-import TOC from "./TOC";
 
 export default function Lab2() {
     return (
@@ -133,8 +132,6 @@ export default function Lab2() {
 
             <BootstrapNavigation />
             <br />
-
-            <TOC />
 
             <br /><br /><br />
 
