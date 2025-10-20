@@ -38,7 +38,7 @@ export default function Assignments() {
                                         <div className="ms-3 me-5">
                                             <Link href={`/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link text-black text-decoration-none">
                                                 {assignment.title} <br />
-                                                <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> May 6 at 12:00am | <b>Due</b> May 13 at 11:59pm | {assignment.points} pts</span>
+                                                <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> {new Date(assignment.available).toDateString()} | <b>Due</b> {new Date(assignment.due).toDateString()} | {assignment.points} pts</span>
                                             </Link>
                                         </div>
                                     </div>
