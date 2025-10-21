@@ -76,7 +76,7 @@ export default function AssignmentEditor() {
                                     <Form.Check className="mb-3" label="Website URL" name="check-online-entry-options" id="wd-website-url" />
                                     <Form.Check className="mb-3" label="Media Recordings" name="check-online-entry-options" id="wd-media-recordings" />
                                     <Form.Check className="mb-3" label="Student Annotation" name="check-online-entry-options" id="wd-student-annotation" />
-                                    <Form.Check label="wd-file-upload" name="check-online-entry-options" id="wd-file-upload" />        
+                                    <Form.Check className="mb-3" label="File Uploads" name="check-online-entry-options" id="wd-file-upload" />        
                                 </Form.Group>   
                             </fieldset>
                         </Col>
@@ -98,17 +98,17 @@ export default function AssignmentEditor() {
 
                                 <Form.Group id="wd-due-date" className="mb-3">
                                     <Form.Label><b>Due</b></Form.Label>
-                                    <Form.Control type="date" defaultValue={assignment.due} />
+                                    <Form.Control type="datetime-local" defaultValue={assignment.due} />
                                 </Form.Group>
 
                                 <Row>
                                     <Col className="pe-1" id="wd-available-from">
                                         <Form.Label><b>Available from</b></Form.Label>
-                                        <Form.Control type="date" defaultValue={assignment.available} />
+                                        <Form.Control type="datetime-local" defaultValue={assignment.available} />
                                     </Col>
                                     <Col className="ps-1" id="wd-available-until">
                                         <Form.Label><b>Until</b></Form.Label>
-                                        <Form.Control type="date" defaultValue={assignment.until} />
+                                        <Form.Control type="datetime-local" defaultValue={assignment.until} />
                                     </Col>
                                 </Row>
                             </fieldset>

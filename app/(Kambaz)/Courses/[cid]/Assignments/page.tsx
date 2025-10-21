@@ -15,6 +15,15 @@ export default function Assignments() {
     const { cid } = useParams();
     const assignments = db.assignments;
 
+    const get_t = (a: Date) => {
+        const date = a.toLocaleDateString('en-US', {month: 'short', day: '2-digit'});
+        const t = a.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}).substring(0, 5);
+        const z = a.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}).substring(6, 8).toLowerCase();
+        return `${date} at ${t}${z}`;
+    }
+
+    
+
     return (
         <div id="wd-assignments">
             <AssignmentControls /><br /><br /><br /><br />
@@ -37,8 +46,9 @@ export default function Assignments() {
                                         <AssignmentListButtons />
                                         <div className="ms-3 me-5">
                                             <Link href={`/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link text-black text-decoration-none">
-                                                {assignment.title} <br />
-                                                <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> {new Date(assignment.available).toDateString()} | <b>Due</b> {new Date(assignment.due).toDateString()} | {assignment.points} pts</span>
+                                                <b>{assignment.title}</b> <br />
+                                                <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> 
+                                                  {get_t(new Date(assignment.available))} | <b>Due</b> {get_t(new Date(assignment.due))} | {assignment.points} pts</span>
                                             </Link>
                                         </div>
                                     </div>

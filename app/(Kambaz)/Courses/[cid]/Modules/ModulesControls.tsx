@@ -30,11 +30,9 @@ export default function ModulesControls() {
         </Dropdown>
 
         <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-view-progress">
-            <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
             View Progress</Button>
 
         <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-collapse-all">
-            <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
             Collapse All</Button>
     </div>
   )
