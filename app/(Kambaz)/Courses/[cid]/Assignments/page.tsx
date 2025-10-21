@@ -47,9 +47,9 @@ export default function Assignments() {
                                         <div className="ms-3 me-5">
                                             <Link href={`/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link text-black text-decoration-none">
                                                 <b>{assignment.title}</b> <br />
-                                                <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> 
-                                                  {get_t(new Date(assignment.available))} | <b>Due</b> {get_t(new Date(assignment.due))} | {assignment.points} pts</span>
                                             </Link>
+                                            <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> 
+                                                  {get_t(new Date(assignment.available))} | <b>Due</b> {get_t(new Date(assignment.due))} | {assignment.points} pts</span>
                                         </div>
                                     </div>
                                     <LessonControlButtons />
