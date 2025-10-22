@@ -102,11 +102,11 @@ export default function AssignmentEditor() {
                                 </Form.Group>
 
                                 <Row>
-                                    <Col className="pe-1" id="wd-available-from">
+                                    <Col id="wd-available-from">
                                         <Form.Label><b>Available from</b></Form.Label>
                                         <Form.Control type="datetime-local" defaultValue={assignment.available} />
                                     </Col>
-                                    <Col className="ps-1" id="wd-available-until">
+                                    <Col id="wd-available-until">
                                         <Form.Label><b>Until</b></Form.Label>
                                         <Form.Control type="datetime-local" defaultValue={assignment.until} />
                                     </Col>
