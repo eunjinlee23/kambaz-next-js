@@ -1,5 +1,4 @@
 "use client";
- 
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import InputGroupText from "react-bootstrap/esm/InputGroupText";
@@ -8,24 +7,38 @@ import EditorButtons from "./EditorButtons";
 import { RxCross2 } from "react-icons/rx";
 import { useParams } from "next/navigation";
 import * as db from "../../../../Database";
+import { useSelector, useDispatch } from "react-redux";
+import { updateAssignment } from "../reducer";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+
 
  
 export default function AssignmentEditor() {
 
     const { cid, aid } = useParams();
-    const assignments = db.assignments;
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    const dispatch = useDispatch();
+
+    const assignm = { ...assignments.find((a) => a._id === aid?.toString())};
+
+    console.log(aid, assignments);
+
+    const [ temp, setTemp] = useState(assignm);
+    
 
   return (
 <div id="wd-assignments-editor">
     {assignments
         .filter((assignment) => assignment.course === cid)
-        .filter((assignments) => assignments._id === aid)
+        .filter((assignment) => assignment._id === aid)
         .map((assignment) => (
             <div key={"a"}>
                 <Form className="mb-4">
                     <Form.Group className="mb-3" id="wd-name">
                         <Form.Label>Assignment Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter assignment name" defaultValue={assignment.title} />
+                        <Form.Control onChange={(e) => dispatch(updateAssignment( {...assignment, title: e.target.value}))} type="text" placeholder="Enter assignment name" defaultValue={assignment.title} />
                     </Form.Group>
                     <Form.Control as="textarea" rows={14} 
                     defaultValue={assignment.description}/>
@@ -115,10 +128,11 @@ export default function AssignmentEditor() {
                         </Col>
                     </Row>
                 </div>
+                                <br /><hr />
+        <EditorButtons prev={`${cid}`} updateAssignment={() => dispatch(updateAssignment({ ...assignment, editing: false}))}
+                cancelAssignment={() => dispatch(updateAssignment({ ...temp, editing: false}))} />
             </div>
         ))}
-        <br /><hr />
-        <EditorButtons prev={`${cid}`}/>
 </div>
   );
 }

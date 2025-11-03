@@ -1,23 +1,37 @@
+"use client";
 import { ReactNode } from "react";
+import { useState } from "react";
 import CourseNavigation from "./Navigation";
+import { useSelector } from "react-redux";
+import { useParams } from "next/navigation";
 import { FaAlignJustify } from "react-icons/fa6";
 import { courses } from "../../Database";
 import Breadcrumb from "./Breadcrumb";
+import { Button } from "react-bootstrap";
+import { RootState } from "../../store";
 
-export default async function CoursesLayout(
-    { children, params }: Readonly<{ children: ReactNode; params: Promise<{ cid: string }> }>) {
-        const { cid } = await params;
+export default function CoursesLayout(
+    { children }: Readonly<{ children: ReactNode }>) {
+        const { cid } = useParams();
+        const { courses } = useSelector((state: RootState) => state.coursesReducer);
         const course = courses.find((course) => course._id === cid);
+        const [open, setOpen] = useState("block");
+        const handleOpen = () => {
+            open === "block" ? setOpen("none") : setOpen("block")
+        }
+        console.log(open)
         return (
 
             <div id="wd-courses">
                 <h2 className="text-danger">
-                    <FaAlignJustify className="me-4 fs-4 mb-1" />
-                    <Breadcrumb course={course}/>
+                    <Button onClick={handleOpen}>
+                        <FaAlignJustify className="me-4 fs-4 mb-1" />
+                    </Button>
+                    {course?.name}
                     
                 </h2> <hr />
                 <div className="d-flex">
-                    <div className="d-none d-md-block">
+                    <div className={`d-none d-md-${open}`}>
                         <CourseNavigation />
                     </div>
                     <div className="flex-fill">

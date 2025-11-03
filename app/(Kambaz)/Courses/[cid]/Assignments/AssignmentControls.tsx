@@ -1,10 +1,26 @@
+"use client";
 import React from 'react'
 import { Button, FormControl, InputGroup } from 'react-bootstrap'
 import InputGroupText from 'react-bootstrap/esm/InputGroupText'
 import { CiSearch } from 'react-icons/ci'
 import { FaPlus } from 'react-icons/fa6'
+import { useState } from "react";
+import { redirect } from "next/dist/client/components/navigation";
+import { ParamValue } from 'next/dist/server/request/params';
+import Link from 'next/link';
+import { addAssignment } from "./reducer";
+import { v4 as uuidv4 } from "uuid";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function AssignmentControls() {
+
+
+
+export default function AssignmentControls({assignmentCId} : {
+  assignmentCId: ParamValue}
+) {
+
+  const dispatch = useDispatch();
+
   return (
     <div className="mt-2 mb-3">
         <InputGroup size="lg" className="w-50 float-start">
@@ -13,9 +29,10 @@ export default function AssignmentControls() {
         </InputGroup>
 
 
-        <Button variant="danger" size="lg" className="me-1 text-nowrap float-end">
+        <Link href={`/Courses/${assignmentCId}/Assignments/AddAssignment`}
+            className="btn btn-danger btn-lg me-1 text-nowrap float-end">
              <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} /> Assignment
-        </Button>
+        </Link>
 
         <Button variant="secondary" size="lg" className="me-1 text-nowrap float-end">
              <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} /> Group

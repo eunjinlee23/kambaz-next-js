@@ -63,3 +63,11 @@ body * {
     border-color: #dfe2e6;
     border-radius: 7px;
 }
+
+.display-block-none {
+    display: none
+}
+
+.display-block-block {
+    display: block
+}
