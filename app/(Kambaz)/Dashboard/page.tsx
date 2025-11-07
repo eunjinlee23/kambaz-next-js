@@ -9,6 +9,8 @@ import { Button, Card, CardBody, CardImg, CardText, CardTitle, Col, FormControl,
 import AllCourseCards from "./AllCourseCards";
 import { RootState } from "../store";
 
+import type { Course } from "../Courses/reducer";
+
 
 export default function Dashboard() {
     const { courses } = useSelector((state: RootState) => state.coursesReducer);
@@ -60,6 +62,7 @@ export default function Dashboard() {
                                 enrollment.user === currentUser?._id &&
                                 enrollment.course === course._id))
                                 .map((course) => (
+                                    course !== undefined ? 
                                     <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px "}}>
                                         <Card>
                                             <Link href={`/Courses/${course._id}/Home`} 
@@ -82,14 +85,14 @@ export default function Dashboard() {
                                                     <Button id="wd-edit-course-click"
                                                         onClick={(e) => {
                                                         e.preventDefault();
-                                                        setCourse(course) }}
+                                                        setCourse(course as Course) }}
                                                         className="btn btn-warning me-2 float-end">
                                                         Edit </Button>
                                                 </CardBody>
                                             </Link>
                                         </Card>
 
-                                    </Col>
+                                    </Col> : "null"
                                 )
                             )}
                             </Row>
