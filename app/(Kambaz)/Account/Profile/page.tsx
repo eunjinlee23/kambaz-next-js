@@ -7,8 +7,24 @@ import Link from "next/link";
 import { Button, FormControl, FormSelect } from "react-bootstrap";
 import { RootState } from "../../store";
 
+type User = {
+    _id: string,
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    dob: string,
+    role: string,
+    loginId: string,
+    section: string,
+    lastActivity: string,
+    totalActivity: string
+}
+
 export default function Profile() { 
-    const [profile, setProfile] = useState<any>({});
+    const [profile, setProfile] = useState<User>({_id: "", username: "", password: "", firstName: "", lastName: "",
+                                                        email: "", dob: "", role: "", loginId: "", section: "", lastActivity: "", totalActivity: ""});
     const dispatch = useDispatch();
     const { currentUser } = useSelector((state: RootState) => state.accountReducer);
     const fetchProfile = () => {
@@ -22,6 +38,8 @@ export default function Profile() {
     useEffect(() => {
         fetchProfile();
     }, []);
+
+    console.log()
     return ( 
         <div id="wd-profile-screen"> 
             <h1>Profile</h1> 
