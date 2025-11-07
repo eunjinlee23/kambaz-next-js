@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 import * as db from "../Database";
 import { Button, Card, CardBody, CardImg, CardText, CardTitle, Col, FormControl, Row } from "react-bootstrap";
-import EnrolledCourseCards from "./EnrolledCourseCards";
 import AllCourseCards from "./AllCourseCards";
 import { RootState } from "../store";
 
