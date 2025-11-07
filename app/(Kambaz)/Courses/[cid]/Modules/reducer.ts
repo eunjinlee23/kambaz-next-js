@@ -32,6 +32,8 @@ const modulesSlice = createSlice({
                 lessons: [],
                 name: module.name,
                 course: module.course,
+                description: "",
+                editing: false
             }
             state.modules = [...state.modules, newModule] as Module[];
         },

@@ -19,6 +19,8 @@ export default function Modules() {
     const { modules } = useSelector((state: RootState) => state.modulesReducer);
     const dispatch = useDispatch();
 
+    console.log(modules)
+
     return (
         <div>
             <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={() => {
