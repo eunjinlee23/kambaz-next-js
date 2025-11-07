@@ -26,7 +26,7 @@ export default function Lab4() {
             <ClickEvent />
             <PassingDataOnEvent />
             <PassingFunctions theFunction={sayHello} />
-            <EventObject />
+            {/*<EventObject />*/}
             <Counter />
             <BooleanStateVariables />
             <StringStateVariables />
