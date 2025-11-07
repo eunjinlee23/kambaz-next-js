@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateAssignment } from "../reducer";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { RootState } from "../../../../store";
 
 
 
@@ -18,7 +19,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function AssignmentEditor() {
 
     const { cid, aid } = useParams();
-    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
     const dispatch = useDispatch();
 
     const assignm = { ...assignments.find((a) => a._id === aid?.toString())};
