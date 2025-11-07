@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const enrollmentsSlice = createSlice({
-    name: "modules",
+    name: "enrollments",
     initialState,
     reducers: {
         addEnrollment: (state, { payload: enrollment }) => {
@@ -18,18 +18,10 @@ const enrollmentsSlice = createSlice({
             state.enrollments = [...state.enrollments, newEnrollment] as unknown;
         },
 
-        deleteEnrollment: (state, { payload: {enrollment} }) => {
-            state.enrollments = state.enrollments.filter((e) => e._id !== enrollment._id)
+        deleteEnrollment: (state, { payload: enrollmentId }) => {
+            state.enrollments = state.enrollments.filter((e) => e._id !== enrollmentId)
         },
 
-        updateEnrollment: (state, { payload: {enrollment} }) => {
-            state.enrollments = state.enrollments.map((e) => 
-                e._id === enrollment._id ? enrollment : e)
-        },
-        editEnrollment: (state, { payload: enrollmentId }) => {
-            state.enrollments = state.enrollments.map((e) => 
-                e._id === enrollmentId ? { ...e, editing: true} : e )
-        },
     },
 });
 

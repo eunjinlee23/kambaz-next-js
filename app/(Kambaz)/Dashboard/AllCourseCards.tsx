@@ -14,8 +14,6 @@ export default function AllCourseCards({userId} : {
         const { enrollments } = useSelector((state: RootState) => state.enrollmentsReducer);
         const dispatch = useDispatch();
 
-        const [enrolled, setEnrolled] = useState(courses.filter((course) => enrollments.some((enrollment) => 
-            enrollment.user === userId && enrollment.course === course._id)))
 
   return (
     <div>
@@ -37,8 +35,11 @@ export default function AllCourseCards({userId} : {
                                         <CardText className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
                                             {course.description} </CardText>
 
-                                        <Button
-                                        className="btn-danger">Unenroll</Button>
+                                        <Button onClick={(event) => {
+                                            event.preventDefault();
+                                            dispatch(deleteEnrollment((enrollments.find((e) => e.course === course._id && e.user === userId))._id));
+                                        }}
+                                        className="btn-danger float-end" >Unenroll</Button>
                                     </CardBody>
                             </Link>
                         </Card>
@@ -46,7 +47,12 @@ export default function AllCourseCards({userId} : {
         }
 
         {
-            courses.filter((course) => !enrolled.some((excluded => excluded._id === course._id)))
+
+            courses.filter((course) => !(courses.filter((course) => enrollments.some((enrollment) => 
+                enrollment.user === userId &&
+                enrollment.course === course._id))).some((excluded => excluded._id === course._id)))
+                
+
                 .map((course) => (
                     <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px "}}>
                         <Card>
@@ -62,9 +68,8 @@ export default function AllCourseCards({userId} : {
                                         <Button onClick={(event) => {
                                             event.preventDefault();
                                             dispatch(addEnrollment({course: course._id, user: userId}))
-                                            setEnrolled([...enrolled, course]);
 
-                                        }} className={"btn-success"}>Enroll</Button>
+                                        }} className="btn-success float-end">Enroll</Button>
                                     </CardBody>
                             </Link>
                         </Card>
