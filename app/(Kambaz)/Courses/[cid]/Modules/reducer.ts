@@ -2,10 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { modules } from "../../../Database";
 import { v4 as uuidv4 } from "uuid";
 
-const initialState = {
-    modules: modules,
-};
-
 type Lesson = {
     _id: string,
     name: string,
@@ -18,8 +14,13 @@ type Module = {
     name: string,
     description: string,
     course: string,
-    lessons: Lesson[]
+    lessons: Lesson[],
+    editing: boolean
 }
+
+const initialState = {
+    modules: modules as Module[],
+};
 
 const modulesSlice = createSlice({
     name: "modules",
