@@ -1,3 +1,4 @@
+/*
 import { useState } from "react";
 
 export default function EventObject() {
@@ -20,3 +21,4 @@ export default function EventObject() {
     </div>
   )
 }
+*/
