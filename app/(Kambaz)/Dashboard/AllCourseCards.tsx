@@ -41,9 +41,6 @@ export default function AllCourseCards({userId} : {
                                             if (findEnrollment) {
                                                 dispatch(deleteEnrollment(findEnrollment._id));
                                             }
-
-                                            /*
-                                            dispatch(deleteEnrollment((enrollments.find((e) => e.course === course._id && e.user === userId))?._id));*/
                                         }}
                                         className="btn-danger float-end" >Unenroll</Button>
                                     </CardBody>

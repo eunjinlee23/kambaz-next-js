@@ -24,8 +24,8 @@ export default function CoursesLayout(
 
             <div id="wd-courses">
                 <h2 className="text-danger">
-                    <Button onClick={handleOpen}>
-                        <FaAlignJustify className="me-4 fs-4 mb-1" />
+                    <Button onClick={handleOpen} variant="none" className="text-danger me-4" >
+                        <FaAlignJustify className="fs-4 mb-1 text-danger" />
                     </Button>
                     {course?.name}
                     

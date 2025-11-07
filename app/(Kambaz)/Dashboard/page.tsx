@@ -27,13 +27,6 @@ export default function Dashboard() {
     
     const [filterEnrollment, setFilterEnrollment ] = useState(true);
 
-    /*
-    const [defaultCourse, setDefaultCourse] = useState(courses.filter((course) => enrollments.some((enrollment) => 
-        enrollment.user === currentUser._id &&
-        enrollment.course === course._id)))
-        */
-
-
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
