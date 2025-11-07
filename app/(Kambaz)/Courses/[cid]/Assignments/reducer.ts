@@ -11,7 +11,7 @@ const assignmentsSlice = createSlice({
     initialState,
     reducers: {
         addAssignment: (state, { payload: assignment }) => {
-            const newAssignment: any = {
+            const newAssignment = {
                 _id: uuidv4(),
                 title: assignment.title,
                 course: assignment.course,
@@ -21,7 +21,7 @@ const assignmentsSlice = createSlice({
                 until: assignment.until,
                 description: assignment.description
             }
-            state.assignments = [ ...state.assignments, newAssignment ] as any;
+            state.assignments = [ ...state.assignments, newAssignment ];
         },
 
         deleteAssignment: (state, { payload: assignmentId }) => {
