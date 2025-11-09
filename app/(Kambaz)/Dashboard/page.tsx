@@ -30,7 +30,7 @@ export default function Dashboard() {
 
 
     if (currentUser === null) {
-        redirect("/Account/Singin");
+        redirect("/Account/Signin");
     }
 
     return (
@@ -72,6 +72,7 @@ export default function Dashboard() {
                                 onChange={(e) => setCourse({ ...course, name: e.target.value})}/>
                             <FormControl as="textarea" value={course.description} rows={3} 
                                 onChange={(e) => setCourse({...course, description: e.target.value})}/>
+                            <hr />
                             {filterEnrollment ? 
                             <Row xs={1} md={5} className="g-4">
                                 {courses
