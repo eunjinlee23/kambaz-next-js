@@ -70,7 +70,7 @@ export default function Profile() {
                         <option value="FACULTY">Faculty</option>
                         <option value="STUDENT">Student</option>
                     </FormSelect>
-                    <Button onClick={signout} className="w-100 mb-2" id="wd-signout-btn">
+                    <Button onClick={signout} className="btn-danger w-100 mb-2" id="wd-signout-btn">
                         Sign out
                     </Button>
                 </div>

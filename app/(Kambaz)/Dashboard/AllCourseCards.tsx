@@ -35,14 +35,17 @@ export default function AllCourseCards({userId} : {
                                         <CardText className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
                                             {course.description} </CardText>
 
+                                        <div className="d-flex justify-content-end">
                                         <Button onClick={(event) => {
                                             event.preventDefault();
                                             const findEnrollment = enrollments.find((e) => e.course === course._id && e.user === userId);
                                             if (findEnrollment) {
                                                 dispatch(deleteEnrollment(findEnrollment._id));
                                             }
-                                        }}
-                                        className="btn-danger float-end" >Unenroll</Button>
+                                            }}
+                                            className="btn btn-danger " >Unenroll</Button>
+
+                                        </div>
                                     </CardBody>
                             </Link>
                         </Card>
@@ -68,11 +71,15 @@ export default function AllCourseCards({userId} : {
                                         <CardText className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
                                             {course.description} </CardText>
 
+                                        <div className="d-flex justify-content-end">
                                         <Button onClick={(event) => {
                                             event.preventDefault();
                                             dispatch(addEnrollment({course: course._id, user: userId}))
 
                                         }} className="btn-success float-end">Enroll</Button>
+
+                                        </div>
+
                                     </CardBody>
                             </Link>
                         </Card>
