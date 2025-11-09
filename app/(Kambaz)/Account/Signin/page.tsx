@@ -32,8 +32,7 @@ export default function Signin() {
                 u.username === credentials.username &&
                 u.password === credentials.password
         );
-        console.log(user)
-        console.log(credentials)
+
         if (!user) return;
         dispatch(setCurrentUser(user));
         redirect("/Dashboard");

@@ -1,15 +1,12 @@
-/*
+
 import { useState } from "react";
 
 export default function EventObject() {
     const [event, setEvent] = useState(null);
-    const handleClick = (e) => {
-      const eventData = {
-        type: e.type,
-        target: e.target.outerHTML,
-        timeStamp: e.timeStamp,
-      };
-      setEvent(eventData);
+    const handleClick = (e: any) => {
+      e.target = e.target.outerHTML;
+      delete e.view;
+      setEvent(e);
     };
   return (
     <div>
@@ -24,4 +21,4 @@ export default function EventObject() {
     </div>
   )
 }
-  */
+
