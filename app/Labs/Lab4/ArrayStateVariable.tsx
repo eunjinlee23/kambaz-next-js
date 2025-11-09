@@ -16,7 +16,7 @@ export default function ArrayStateVariable() {
     <div id="wd-array-state-variables">
         <h2>Array State Variable</h2>
         <button onClick={addElement} className="btn btn-success mb-2">Add Element</button>
-        <fieldset className="border w-25">
+        <fieldset className="border">
             <ListGroup>
                 {array.map((item, index) => (
                     <ListGroup.Item key={index}> <b>{item}</b>
