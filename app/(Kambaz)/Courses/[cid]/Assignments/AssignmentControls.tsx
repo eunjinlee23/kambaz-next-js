@@ -15,8 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 
-export default function AssignmentControls({assignmentCId} : {
-  assignmentCId: ParamValue}
+export default function AssignmentControls({assignmentCId, show} : {
+  assignmentCId: ParamValue; show: string}
 ) {
 
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function AssignmentControls({assignmentCId} : {
 
 
         <Link href={`/Courses/${assignmentCId}/Assignments/AddAssignment`}
-            className="btn btn-danger btn-lg me-1 text-nowrap float-end">
+            className={`d-${show} btn btn-danger btn-lg me-1 text-nowrap float-end`}>
              <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} /> Assignment
         </Link>
 

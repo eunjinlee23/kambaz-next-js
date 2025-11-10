@@ -20,6 +20,7 @@ export default function AssignmentEditor() {
 
     const { cid, aid } = useParams();
     const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
+    const { currentUser } = useSelector((state: RootState) => state.accountReducer);
 
     const dispatch = useDispatch();
 
@@ -36,20 +37,20 @@ export default function AssignmentEditor() {
         .filter((assignment) => assignment.course === cid)
         .filter((assignment) => assignment._id === aid)
         .map((assignment) => (
-            <div key={"a"}>
+            <div key={assignment._id}>
                 <Form className="mb-4">
                     <Form.Group className="mb-3" id="wd-name">
                         <Form.Label>Assignment Name</Form.Label>
-                        <Form.Control onChange={(e) => dispatch(updateAssignment( {...assignment, title: e.target.value}))} type="text" placeholder="Enter assignment name" defaultValue={assignment.title} />
+                        <Form.Control onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, title: e.target.value}))}}} type="text" placeholder="Enter assignment name" defaultValue={assignment.title} />
                     </Form.Group>
-                    <Form.Control as="textarea" rows={14} onChange={(e) => dispatch(updateAssignment( {...assignment, description: e.target.value}))}
+                    <Form.Control as="textarea" rows={14} onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, description: e.target.value}))}}}
                     defaultValue={assignment.description}/>
                 </Form>
 
                 <div className="pe-2">
                     <Row className="mb-3" id="wd-points">
                         <Form.Label sm="4" className="text-end" column>Points</Form.Label>
-                        <Col sm="8"><Form.Control onChange={(e) => dispatch(updateAssignment( {...assignment, points: e.target.value}))} type="number" defaultValue={assignment.points} /></Col>
+                        <Col sm="8"><Form.Control onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, points: e.target.value}))}}} type="number" defaultValue={assignment.points} /></Col>
                     </Row>
 
                     <Row className="mb-3" id="wd-group">
@@ -113,17 +114,17 @@ export default function AssignmentEditor() {
 
                                 <Form.Group id="wd-due-date" className="mb-3">
                                     <Form.Label><b>Due</b></Form.Label>
-                                    <Form.Control  onChange={(e) => dispatch(updateAssignment( {...assignment, due: e.target.value}))} type="datetime-local" defaultValue={assignment.due} />
+                                    <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, due: e.target.value}))}}} type="datetime-local" defaultValue={assignment.due} />
                                 </Form.Group>
 
                                 <Row>
                                     <Col id="wd-available-from">
                                         <Form.Label><b>Available from</b></Form.Label>
-                                        <Form.Control  onChange={(e) => dispatch(updateAssignment( {...assignment, available: e.target.value}))} type="datetime-local" defaultValue={assignment.available} />
+                                        <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, available: e.target.value}))}}} type="datetime-local" defaultValue={assignment.available} />
                                     </Col>
                                     <Col id="wd-available-until">
                                         <Form.Label><b>Until</b></Form.Label> 
-                                        <Form.Control  onChange={(e) => dispatch(updateAssignment( {...assignment, until: e.target.value}))} type="datetime-local" defaultValue={assignment.until} />
+                                        <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, until: e.target.value}))}}} type="datetime-local" defaultValue={assignment.until} />
                                     </Col>
                                 </Row>
                             </fieldset>

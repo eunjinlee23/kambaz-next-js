@@ -41,7 +41,7 @@ export default function AddAssignmentEditor() {
                     <div className="pe-2">
                         <Row className="mb-3" id="wd-points">
                             <Form.Label sm="4" className="text-end" column>Points</Form.Label>
-                            <Col sm="8"><Form.Control type="number" 
+                            <Col sm="8"><Form.Control type="number" defaultValue={100}
                                 onChange={(e) => {
                                     setNewAssignmentPoint(parseInt(e.target.value))}} />
                             </Col>

@@ -3,15 +3,22 @@
 import Link from 'next/link'
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { useSelector } from 'react-redux';
+import { RootState } from "../../../../store";
+
 
 export default function EditorButtons({prev, updateAssignment, cancelAssignment}: { prev: string; updateAssignment: () => void;
     cancelAssignment: () => void;
 }) {
+
+  const { currentUser } = useSelector((state: RootState) => state.accountReducer);
   
 
   return (
     <div className="mt-2 mb-3">
-        <Link onClick={updateAssignment} href={`/Courses/${prev}/Assignments`} className="btn btn-danger btn-lg me-1 text-nowrap float-end">
+        <Link onClick={() => {if (currentUser?.role === "FACULTY") {
+          
+          updateAssignment()}}} href={`/Courses/${prev}/Assignments`} className="btn btn-danger btn-lg me-1 text-nowrap float-end">
             Save
         </Link>
 

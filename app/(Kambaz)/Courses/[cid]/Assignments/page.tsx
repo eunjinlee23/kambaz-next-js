@@ -26,15 +26,21 @@ export default function Assignments() {
         return `${date} at ${t}${z}`;
     }
 
+    const { currentUser } = useSelector((state: RootState) => state.accountReducer)
+
     const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
     const dispatch = useDispatch();
 
-    console.log(assignments);
+    let open = "block"
+
+    if (currentUser?.role !== "FACULTY") {
+        open = "none"
+    }
 
     return (
         <div id="wd-assignments">
             <AssignmentControls
-                assignmentCId={cid}
+                assignmentCId={cid} show={open}
             /><br /><br /><br /><br />
             <ListGroup className="rounded-0" id="wd-assignment-list">
                 <ListGroupItem className="p-0 mb-5 fs-5 border-gray">
@@ -62,7 +68,7 @@ export default function Assignments() {
                                         </div>
                                     </div>
                                     <AssignmentLessonButtons assignmentId={assignment._id} 
-                                        deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}}/>
+                                        deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}} deleteShow={open}/>
                                 </ListGroupItem>
                             ))}
                     </ListGroup>

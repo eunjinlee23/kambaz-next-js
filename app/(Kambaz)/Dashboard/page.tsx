@@ -53,7 +53,7 @@ export default function Dashboard() {
                 onChange={(e) => setCourse({ ...course, name: e.target.value})}/>
             <FormControl as="textarea" value={course.description} rows={3} 
                 onChange={(e) => setCourse({...course, description: e.target.value})}/>*/}
-            <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
+    
             
             <div id="wd-dashboard-courses">        
                     {
@@ -72,6 +72,11 @@ export default function Dashboard() {
                                 onChange={(e) => setCourse({ ...course, name: e.target.value})}/>
                             <FormControl as="textarea" value={course.description} rows={3} 
                                 onChange={(e) => setCourse({...course, description: e.target.value})}/>
+
+                            <hr />
+                            
+                            <h2 id="wd-dashboard-published">Published Courses ({(enrollments.filter((e) => e.user === currentUser?._id)).length})</h2>
+                            
                             <hr />
                             {filterEnrollment ? 
                             <Row xs={1} md={5} className="g-4">
@@ -85,7 +90,7 @@ export default function Dashboard() {
                                             <Card>
                                                 <Link href={`/Courses/${course._id}/Home`} 
                                                     className="wd-dashboard-course-link text-decoration-none text-dark" >
-                                                    <CardImg src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
+                                                    <CardImg src={course.image} variant="top" width="100%" height={160} />
                                                     <CardBody className="card-body">
                                                         <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
                                                             {course.name} </CardTitle>
@@ -120,40 +125,48 @@ export default function Dashboard() {
                         </div>
 
                     :
-                        filterEnrollment ? 
-                            <Row xs={1} md={5} className="g-4">
-                                {courses
-                                    .filter((course) => enrollments.some((enrollment) => 
-                                    enrollment.user === currentUser?._id &&
-                                    enrollment.course === course._id))
-                                    .map((course) => (
-                                        course !== undefined ? 
-                                        <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px "}}>
-                                            <Card>
-                                                <Link href={`/Courses/${course._id}/Home`} 
-                                                    className="wd-dashboard-course-link text-decoration-none text-dark" >
-                                                    <CardImg src="/images/reactjs.jpg" variant="top" width="100%" height={160} />
-                                                    <CardBody className="card-body">
-                                                        <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
-                                                            {course.name} </CardTitle>
-                                                        <CardText className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
-                                                            {course.description} </CardText>
+                            
+                            filterEnrollment ? 
+                                <div>
+                                <h2 id="wd-dashboard-published">Published Courses ({(enrollments.filter((e) => e.user === currentUser?._id)).length})</h2><hr />
+                                <Row xs={1} md={5} className="g-4">
+                                    {courses
+                                        .filter((course) => enrollments.some((enrollment) => 
+                                        enrollment.user === currentUser?._id &&
+                                        enrollment.course === course._id))
+                                        .map((course) => (
+                                            course !== undefined ? 
+                                            <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px "}}>
+                                                <Card>
+                                                    <Link href={`/Courses/${course._id}/Home`} 
+                                                        className="wd-dashboard-course-link text-decoration-none text-dark" >
+                                                        <CardImg src={course.image} variant="top" width="100%" height={160} />
+                                                        <CardBody className="card-body">
+                                                            <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                                                                {course.name} </CardTitle>
+                                                            <CardText className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
+                                                                {course.description} </CardText>
 
-                                                        <Button variant="primary"> Go </Button>
-                                            
-                                                    </CardBody>
-                                                </Link>
-                                            </Card>
+                                                            <Button variant="primary"> Go </Button>
+                                                
+                                                        </CardBody>
+                                                    </Link>
+                                                </Card>
 
-                                        </Col> : "null"
-                                    )
-                                )}
-                                </Row>
+                                            </Col> : "null"
+                                        )
+                                    )}
+                                    </Row>
+                                    </div>
 
-                            :
-                                <AllCourseCards userId={currentUser ? currentUser._id : ""}/> 
-                                
+                                :
+                                    <div>
+                                    <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
+                                    <hr />
+                                    <AllCourseCards userId={currentUser ? currentUser._id : ""}/> 
 
+                                    </div>
+                            
                     }
                         
             </div>

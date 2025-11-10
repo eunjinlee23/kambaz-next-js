@@ -7,15 +7,20 @@ import { useState } from "react";
 import AssignmentDeleteModal from './AssignmentDeleteModal';
 
 
-export default function AssignmentLessonButtons({assignmentId, deleteAssignment}: {
-    assignmentId: string; deleteAssignment: (assignmentId: string) => void;
+export default function AssignmentLessonButtons({assignmentId, deleteAssignment, deleteShow}: {
+    assignmentId: string; deleteAssignment: (assignmentId: string) => void; deleteShow: string
 }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
+
+  if (deleteShow === "block") {
+    deleteShow = "inline"
+  }
+
   return (
     <div className="float-end text-nowrap">
-        <FaTrash className="text-danger me-3 mb-1" onClick={handleShow}/>
+        <FaTrash className={`d-${deleteShow} text-danger me-3 mb-1`} onClick={handleShow}/>
         <GreenCheckmark />
         <IoEllipsisVertical className="fs-4" />
 
