@@ -18,15 +18,23 @@ export default function Modules() {
     const [moduleName, setModuleName] = useState("");
     const { modules } = useSelector((state: RootState) => state.modulesReducer);
     const dispatch = useDispatch();
+    const { currentUser } = useSelector((state: RootState) => state.accountReducer);
 
-    console.log(modules)
+    const userRole = currentUser?.role;
+
+    let facultyShow = "block"
+
+    if (currentUser?.role !== "FACULTY") {
+        facultyShow = "none"
+    }
 
     return (
         <div>
             <ModulesControls setModuleName={setModuleName} moduleName={moduleName} addModule={() => {
                 dispatch(addModule({ name: moduleName, course: cid }));
                 setModuleName("");
-            }} />
+                }} 
+                facultyShow={facultyShow}/>
             <br /><br /><br /><br />
             <ListGroup id="wd-modules" className="rounded-0">
                 {modules
@@ -51,7 +59,8 @@ export default function Modules() {
                                     <ModuleControlButtons 
                                         moduleId={module._id} deleteModule={(moduleId) => {
                                             dispatch(deleteModule(moduleId))
-                                        }} editModule={(moduleId) => dispatch(editModule(moduleId))}/>
+                                        }} editModule={(moduleId) => dispatch(editModule(moduleId))}
+                                        facultyShow={facultyShow}/>
                             </div>
                             {module.lessons && (
                                 <ListGroup className="wd-lessons rounded-0">

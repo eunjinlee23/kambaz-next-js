@@ -19,7 +19,7 @@ export default function CoursesLayout(
         const handleOpen = () => {
             open === "block" ? setOpen("none") : setOpen("block")
         }
-        console.log(open)
+        
         return (
 
             <div id="wd-courses">

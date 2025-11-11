@@ -39,7 +39,6 @@ export default function Profile() {
         fetchProfile();
     }, []);
 
-    console.log()
     return ( 
         <div id="wd-profile-screen"> 
             <h1>Profile</h1> 

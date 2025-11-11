@@ -23,8 +23,6 @@ export default function AddAssignmentEditor() {
     const [ assignmentDue, setNewAssignmentDue ] = useState("2023-01-16T07:59:00");
     const [ assignmentUntil, setNewAssignmentUntil ] = useState("2023-01-16T07:59:00");
     const [ assignmentDescription, setNewAssigmentDescription ] = useState("New Description");
-
-    console.log(assignmentPoint);
     
   return (
     <div id="wd-assignments-editor">
