@@ -12,6 +12,7 @@ import { updateAssignment } from "../reducer";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../../../../store";
+import Link from "next/link";
 
 
 
@@ -149,6 +150,7 @@ export default function AssignmentEditor() {
             .filter((assignment) => assignment._id === aid)
             .map((assignment) => (
                 <div key={assignment._id}>
+                    <h3>{assignment.title}</h3>
                     <hr />
                     <div className="d-flex">
                         <div><b>Due</b>: {get_t(new Date(assignment.due))}</div>
@@ -159,6 +161,12 @@ export default function AssignmentEditor() {
                     <div>
                         {assignment.description}
                     </div>
+
+                    <br /><br /><br /><br />
+
+                    <Link href={`/Courses/${cid}/Assignments`} className="btn btn-secondary">
+                        Previous
+                    </Link>
                 </div>
 
             ))

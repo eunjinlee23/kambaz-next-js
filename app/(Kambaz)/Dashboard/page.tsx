@@ -59,10 +59,11 @@ export default function Dashboard() {
 
                             <hr />
                             
-                            <h2 id="wd-dashboard-published">Published Courses ({(enrollments.filter((e) => e.user === currentUser?._id)).length})</h2>
-                            
                             <hr />
                             {filterEnrollment ? 
+
+                            <div>
+                            <h2 id="wd-dashboard-published">Published Courses ({(enrollments.filter((e) => e.user === currentUser?._id)).length})</h2>
                             <Row xs={1} md={5} className="g-4">
                                 {courses
                                     .filter((course) => enrollments.some((enrollment) => 
@@ -103,9 +104,14 @@ export default function Dashboard() {
                                     )
                                 )}
                                 </Row>
+                                </div>
 
                             :
-                                <AllCourseCards userId={currentUser ? currentUser._id : ""}/> }
+                                <div>
+                                <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
+                                <AllCourseCards userId={currentUser ? currentUser._id : ""}/> 
+                                </div>
+                            }
                         </div>
 
                     :
