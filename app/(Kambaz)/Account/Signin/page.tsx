@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import * as db from "../../Database";
 import { FormControl, Button } from "react-bootstrap";
+import * as client from "../client";
 
 type User = {
     _id: string,
@@ -21,18 +22,12 @@ type User = {
     lastActivity: string,
     totalActivity: string
 }
-export default function Signin() {
-    const [credentials, setCredentials] = useState<User>({_id: "", username: "", password: "", firstName: "", lastName: "",
-                                                        email: "", dob: "", role: "", loginId: "", section: "", lastActivity: "", totalActivity: ""
-    });
-    const dispatch = useDispatch();
-    const signin = () => {
-        const user = db.users.find(
-            (u: User) => 
-                u.username === credentials.username &&
-                u.password === credentials.password
-        );
 
+export default function Signin() {
+    const [credentials, setCredentials] = useState<any>({});
+    const dispatch = useDispatch();
+    const signin = async () => {
+        const user = await client.signin(credentials);
         if (!user) return;
         dispatch(setCurrentUser(user));
         redirect("/Dashboard");

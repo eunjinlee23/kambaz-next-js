@@ -1,29 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-type Account = {
-    _id: string,
-    username: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    dob: string,
-    role: string,
-    loginId: string,
-    section: string,
-    lastActivity: string,
-    totalActivity: string
-}
-
 type initialS = {
-    currentUser: Account | null;
+    currentUser: any | null;
 }
 
 
 const initialState: initialS = {
     currentUser: null,
 }
+
 
 
 const accountSlice = createSlice({

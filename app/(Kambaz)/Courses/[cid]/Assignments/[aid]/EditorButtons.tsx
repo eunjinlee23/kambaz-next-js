@@ -7,8 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from "../../../../store";
 
 
-export default function EditorButtons({prev, updateAssignment, cancelAssignment}: { prev: string; updateAssignment: () => void;
-    cancelAssignment: () => void;
+export default function EditorButtons({prev, assignment, updateAssignment}: { prev: string; assignment: any; updateAssignment: (assignment: any) => void;
 }) {
 
   const { currentUser } = useSelector((state: RootState) => state.accountReducer);
@@ -16,13 +15,12 @@ export default function EditorButtons({prev, updateAssignment, cancelAssignment}
 
   return (
     <div className="mt-2 mb-3">
-        <Link onClick={() => {if (currentUser?.role === "FACULTY") {
-          
-          updateAssignment()}}} href={`/Courses/${prev}/Assignments`} className="btn btn-danger btn-lg me-1 text-nowrap float-end">
+        {assignment.description}
+        <Link onClick={() => updateAssignment(assignment)} href={`/Courses/${prev}/Assignments`} className="btn btn-danger btn-lg me-1 text-nowrap float-end">
             Save
         </Link>
 
-        <Link onClick={cancelAssignment} href={`/Courses/${prev}/Assignments`} className="btn btn-secondary btn-lg me-1 text-nowrap float-end">
+        <Link href={`/Courses/${prev}/Assignments`} className="btn btn-secondary btn-lg me-1 text-nowrap float-end">
             Cancel
         </Link>
     </div>

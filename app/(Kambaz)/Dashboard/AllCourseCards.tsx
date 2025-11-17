@@ -2,8 +2,12 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { addEnrollment, deleteEnrollment } from '../Enrollment/reducer';
+import { setEnrollments, addEnrollment, deleteEnrollment } from '../Enrollment/reducer';
+import { addNewCourse, deleteCourse, updateCourse, setCourses } from "../Courses/reducer"; 
+
 import { RootState } from "../store";
+import * as client from "../Courses/client";
+
 
 
 export default function AllCourseCards({userId} : {
@@ -12,8 +16,70 @@ export default function AllCourseCards({userId} : {
 }) {
         const { courses } = useSelector((state: RootState) => state.coursesReducer);
         const { enrollments } = useSelector((state: RootState) => state.enrollmentsReducer);
+        const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+
         const dispatch = useDispatch();
 
+        const fetchCourses = async () => {
+                try {
+                    const courses = await client.findMyCourses();
+                    dispatch(setCourses(courses))
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+
+        const [nmcourses, setnotmycourse] = useState<any>([]);
+        
+        const fetchNotCourses = async () => {
+                try {
+                    const notcourses = await client.findNotMyCourses();
+                    setnotmycourse(notcourses);
+                } catch (error) {
+                    console.error(error);
+                }
+        }
+
+        const fetchEnrollments = async () => {
+            try {
+                const enrollments = await client.getAllEnrollments();
+                dispatch(setEnrollments(enrollments));
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        let enrollment = {_id: 0, user: "", course: ""}
+
+        const onAddNewEnrollment = async (courseId: string) => {
+            console.log("client enrollment", enrollment);
+            const newEnrollment = await client.createEnrollment(enrollment, courseId);
+            fetchCourses();
+            fetchNotCourses();
+            dispatch(setEnrollments([...enrollments, newEnrollment]))
+        }
+
+        const onDeleteEnrollment = async (currentUserId: string, courseId: string) => {
+            const courseEnrolled = enrollments.find((e) => e.course === courseId && e.user === currentUserId);
+            console.log("courseEnrolled", courseEnrolled);
+            if (courseEnrolled) {
+                const status = await client.deleteEnrollment(courseEnrolled._id);
+                dispatch(setEnrollments(enrollments.filter((enrollment) => enrollment._id !== courseEnrolled._id)));
+            }
+            fetchCourses();
+            fetchNotCourses();
+        }
+
+        console.log("enrollments", enrollments);
+
+        useEffect(() => {
+            fetchEnrollments();
+            fetchCourses();
+            fetchNotCourses();
+        }, [currentUser])
+
+        
+        
 
   return (
     <div>
@@ -21,10 +87,8 @@ export default function AllCourseCards({userId} : {
         <Row xs={1} md={5} className="g-4">
 
         {
-            courses.filter((course) => enrollments.some((enrollment) => 
-                enrollment.user === userId &&
-                enrollment.course === course._id))
-                .map((course) => (
+            courses
+                .map((course: any) => (
                     <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px "}}>
                         <Card>
                             <Link href={`/Courses/${course._id}/Home`} 
@@ -39,10 +103,7 @@ export default function AllCourseCards({userId} : {
                                         <div className="d-flex justify-content-end">
                                         <Button onClick={(event) => {
                                             event.preventDefault();
-                                            const findEnrollment = enrollments.find((e) => e.course === course._id && e.user === userId);
-                                            if (findEnrollment) {
-                                                dispatch(deleteEnrollment(findEnrollment._id));
-                                            }
+                                            onDeleteEnrollment(currentUser._id, course._id);
                                             }}
                                             className="btn btn-danger " >Unenroll</Button>
 
@@ -53,13 +114,9 @@ export default function AllCourseCards({userId} : {
                     </Col> ))           
         }
 
-        {
-
-            courses.filter((course) => !(courses.filter((course) => enrollments.some((enrollment) => 
-                enrollment.user === userId &&
-                enrollment.course === course._id))).some((excluded => excluded._id === course._id)))
-            
-                .map((course) => (
+        {   
+            nmcourses
+                ?.map((course: any) => (
                     <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px "}}>
                         <Card>
                             <Link href={`/Courses/${course._id}/Home`} 
@@ -74,7 +131,8 @@ export default function AllCourseCards({userId} : {
                                         <div className="d-flex justify-content-end">
                                         <Button onClick={(event) => {
                                             event.preventDefault();
-                                            dispatch(addEnrollment({course: course._id, user: userId}))
+                                            enrollment = {...enrollment, user: currentUser._id, course: course._id }
+                                            onAddNewEnrollment(course._id);
 
                                         }} className="btn-success float-end">Enroll</Button>
 

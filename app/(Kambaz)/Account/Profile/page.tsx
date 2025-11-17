@@ -3,10 +3,11 @@ import { redirect } from "next/dist/client/components/navigation";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentUser } from "../reducer";
-import Link from "next/link"; 
 import { Button, FormControl, FormSelect } from "react-bootstrap";
 import { RootState } from "../../store";
+import * as client from "../client";
 
+/*
 type User = {
     _id: string,
     username: string,
@@ -21,20 +22,27 @@ type User = {
     lastActivity: string,
     totalActivity: string
 }
+*/
 
 export default function Profile() { 
-    const [profile, setProfile] = useState<User>({_id: "", username: "", password: "", firstName: "", lastName: "",
-                                                        email: "", dob: "", role: "", loginId: "", section: "", lastActivity: "", totalActivity: ""});
-    const dispatch = useDispatch();
     const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+    const [profile, setProfile] = useState<any>({});
+    const dispatch = useDispatch();
     const fetchProfile = () => {
         if (!currentUser) return redirect("/Account/Signin");
         setProfile(currentUser);
     };
-    const signout = () => {
+    const signout = async () => {
+        await client.signout();
         dispatch(setCurrentUser(null));
         redirect("/Account/Signin");
     };
+    const updateProfile = async () => {
+        const updatedProfile = await client.updateUser(profile);
+        dispatch(setCurrentUser(updatedProfile));
+    };
+
+
     useEffect(() => {
         fetchProfile();
     }, []);
@@ -63,12 +71,14 @@ export default function Profile() {
                         onChange={(e) => setProfile({ ...profile, email: e.target.value })}
                         type="email"/>
                     <FormSelect id="wd-role" className="mb-2"
-                        onChange={(e) => setProfile({ ...profile, role: e.target.value })}> 
-                        <option value="USER" defaultChecked>User</option> 
+                        onChange={(e) => setProfile({ ...profile, role: e.target.value })}
+                        value={profile.role}> 
+                        <option value="USER" >User</option> 
                         <option value="ADMIN">Admin</option>
                         <option value="FACULTY">Faculty</option>
                         <option value="STUDENT">Student</option>
                     </FormSelect>
+                    <button onClick={updateProfile} className="btn btn-primary w-100 mb-2"> Update </button>
                     <Button onClick={signout} className="btn-danger w-100 mb-2" id="wd-signout-btn">
                         Sign out
                     </Button>
@@ -77,19 +87,3 @@ export default function Profile() {
         </div>
     )
 }
-
-            /*
-            <FormControl id="wd-username" defaultValue="alice" placeholder="username" className="mb-2"/>
-            <FormControl id="wd-password" defaultValue="123" placeholder="password" type="password" className="mb-2"/>
-            <FormControl id="wd-firstname" defaultValue="Alice" placeholder="First Name" className="mb-2"/>
-            <FormControl id="wd-lastname" defaultValue="Wonderland" placeholder="Last Name" className="mb-2" />
-            <FormControl id="wd-dob"defaultValue="2000-01-01" type="date" className="mb-2"/>
-            <FormControl id="wd-email" defaultValue="alice@wonderland" type="email" className="mb-2"/>
-            <FormSelect defaultValue="FACULTY" id="wd-role" className="mb-2"> 
-                <option value="USER" defaultChecked>User</option> 
-                <option value="ADMIN">Admin</option>
-                <option value="FACULTY">Faculty</option>
-                <option value="STUDENT">Student</option>
-            </FormSelect>
-            <Link href="Signin" className="btn btn-danger w-100 mb-2"> Sign out </Link> 
-            */

@@ -9,13 +9,18 @@ import * as db from "../../../../Database";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { addAssignment } from "../reducer";
+import { setAssignments, addAssignment } from "../reducer";
 import AddAssignmentButtons from "./AddAssignmentButtons";
+import { RootState } from "../../../../store";
+import * as client from "../../../client";
+
 
 export default function AddAssignmentEditor() {
 
     const { cid } = useParams();
     const dispatch = useDispatch();
+    const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
+    
 
     const [ assignmentTitle, setNewAssignmentTitle ] = useState("New Assignment");
     const [ assignmentPoint, setNewAssignmentPoint ] = useState(0);
@@ -23,6 +28,15 @@ export default function AddAssignmentEditor() {
     const [ assignmentDue, setNewAssignmentDue ] = useState("2023-01-16T07:59:00");
     const [ assignmentUntil, setNewAssignmentUntil ] = useState("2023-01-16T07:59:00");
     const [ assignmentDescription, setNewAssigmentDescription ] = useState("New Description");
+
+    const onCreateAssignmentForCourse = async () => {
+        if (!cid) return;
+        const newAssignment = { title: assignmentTitle, points: assignmentPoint, available: assignmentAvailable,
+                                due: assignmentDue, until: assignmentUntil, description: assignmentDescription, 
+                                course: cid };
+        const assignment = await client.createAssignmentForCourse(String(cid), newAssignment);
+        dispatch(setAssignments([...assignments, assignment]));
+    }
     
   return (
     <div id="wd-assignments-editor">
@@ -127,11 +141,7 @@ export default function AddAssignmentEditor() {
                         </Row>
                     </div>
                     <br /><hr />
-                    <AddAssignmentButtons prev={`${cid}`} addAssignment={() => 
-                        dispatch(addAssignment({title: assignmentTitle,
-                            course: cid,  points: assignmentPoint, available: assignmentAvailable, due: assignmentDue,
-                            until: assignmentUntil, description: assignmentDescription
-                    }))}/>
+                    <AddAssignmentButtons prev={`${cid}`} addAssignment={onCreateAssignmentForCourse}/>
                 </div>
     </div>
   );

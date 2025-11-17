@@ -22,9 +22,13 @@ const enrollmentsSlice = createSlice({
             state.enrollments = state.enrollments.filter((e) => e._id !== enrollmentId)
         },
 
+        setEnrollments: (state, {payload: enrollments}) => {
+            state.enrollments = enrollments;
+        }
+
     },
 });
 
-export const { addEnrollment, deleteEnrollment } =
+export const { addEnrollment, deleteEnrollment, setEnrollments } =
     enrollmentsSlice.actions;
 export default enrollmentsSlice.reducer;

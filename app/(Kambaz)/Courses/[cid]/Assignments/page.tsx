@@ -11,14 +11,14 @@ import * as db from "../../../Database";
 import { RootState } from "../../../store";
 
 import { useSelector, useDispatch } from "react-redux";
-import { addAssignment, deleteAssignment, updateAssignment, editAssignment } from "./reducer";
-import { useState } from "react";
+import { setAssignments, addAssignment, deleteAssignment, updateAssignment, editAssignment } from "./reducer";
+import { useState, useEffect } from "react";
 import AssignmentLessonButtons from "./AssignmentLessonButton";
 import LessonControlButtons from "../Modules/LessonControlButtons";
+import * as client from "../../client";
+
 export default function Assignments() {
     const { cid } = useParams();
-    // const assignments = db.assignments;
-
     const get_t = (a: Date) => {
         const date = a.toLocaleDateString('en-US', {month: 'short', day: '2-digit'});
         const t = a.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}).substring(0, 5);
@@ -31,11 +31,27 @@ export default function Assignments() {
     const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
     const dispatch = useDispatch();
 
+    const fetchAssignments = async () => {
+        const assignments = await client.findAssignmentsForCourse(String(cid));
+        dispatch(setAssignments(assignments));
+    }
+
+    const onDeleteAssignment = async (assignmentId: string) => {
+        await client.deleteAssignment(assignmentId);
+        dispatch(setAssignments([...assignments.filter((assignment: any) => assignment._id !== assignmentId)]))
+    }
+
     let open = "block"
 
     if (currentUser?.role !== "FACULTY") {
         open = "none"
     }
+
+    useEffect(() => {
+        fetchAssignments();
+    }, [])
+
+    console.log(assignments);
 
     return (
         <div id="wd-assignments">
@@ -68,7 +84,7 @@ export default function Assignments() {
                                         </div>
                                     </div>
                                     <AssignmentLessonButtons assignmentId={assignment._id} 
-                                        deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}} deleteShow={open}/>
+                                        deleteAssignment={(assignmentId) => {onDeleteAssignment(assignmentId)}} deleteShow={open}/>
                                 </ListGroupItem>
                             ))}
                     </ListGroup>

@@ -8,11 +8,13 @@ import { RxCross2 } from "react-icons/rx";
 import { useParams } from "next/navigation";
 import * as db from "../../../../Database";
 import { useSelector, useDispatch } from "react-redux";
-import { updateAssignment } from "../reducer";
+import { setAssignments, updateAssignment } from "../reducer";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../../../../store";
 import Link from "next/link";
+import * as client from "../../../client";
+
 
 
 
@@ -25,18 +27,19 @@ export default function AssignmentEditor() {
 
     const dispatch = useDispatch();
 
-    const assignm = { ...assignments.find((a) => a._id === aid?.toString())};
-
-    const [ temp, setTemp] = useState(assignm);
-
     const get_t = (a: Date) => {
         const date = a.toLocaleDateString('en-US', {month: 'short', day: '2-digit'});
         const t = a.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}).substring(0, 5);
         const z = a.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true}).substring(6, 8).toLowerCase();
         return `${date} by ${t}${z}`;
     }
-    
 
+    const onUpdateAssignment = async (assignment: any) => {
+        await client.updateAssignment(assignment);
+        const newAssignments = assignments.map((a: any) => a._id === assignment._id ? assignment : a );
+        dispatch(setAssignments(newAssignments));
+    }
+    
   return (
         <div id="wd-assignments-editor">
             {
@@ -140,8 +143,7 @@ export default function AssignmentEditor() {
                             </Row>
                         </div>
                                         <br /><hr />
-                <EditorButtons prev={`${cid}`} updateAssignment={() => dispatch(updateAssignment({ ...assignment, editing: false}))}
-                        cancelAssignment={() => dispatch(updateAssignment({ ...temp, editing: false}))} />
+                <EditorButtons prev={`${cid}`} assignment={assignment} updateAssignment={(assignment) => onUpdateAssignment(assignment)} />
                     </div>
                 ))
             :
