@@ -70,8 +70,6 @@ export default function AllCourseCards({userId} : {
             fetchNotCourses();
         }
 
-        console.log("enrollments", enrollments);
-
         useEffect(() => {
             fetchEnrollments();
             fetchCourses();

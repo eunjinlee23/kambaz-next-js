@@ -7,23 +7,6 @@ import { Button, FormControl, FormSelect } from "react-bootstrap";
 import { RootState } from "../../store";
 import * as client from "../client";
 
-/*
-type User = {
-    _id: string,
-    username: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    dob: string,
-    role: string,
-    loginId: string,
-    section: string,
-    lastActivity: string,
-    totalActivity: string
-}
-*/
-
 export default function Profile() { 
     const { currentUser } = useSelector((state: RootState) => state.accountReducer);
     const [profile, setProfile] = useState<any>({});

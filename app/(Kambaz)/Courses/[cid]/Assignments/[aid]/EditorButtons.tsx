@@ -15,7 +15,6 @@ export default function EditorButtons({prev, assignment, updateAssignment}: { pr
 
   return (
     <div className="mt-2 mb-3">
-        {assignment.description}
         <Link onClick={() => updateAssignment(assignment)} href={`/Courses/${prev}/Assignments`} className="btn btn-danger btn-lg me-1 text-nowrap float-end">
             Save
         </Link>

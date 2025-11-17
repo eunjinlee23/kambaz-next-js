@@ -160,9 +160,6 @@ export default function AssignmentEditor() {
                         <div> </div>
                     </div>
                     <hr />
-                    <div>
-                        {assignment.description}
-                    </div>
 
                     <br /><br /><br /><br />
 

@@ -8,21 +8,6 @@ import * as db from "../../Database";
 import { FormControl, Button } from "react-bootstrap";
 import * as client from "../client";
 
-type User = {
-    _id: string,
-    username: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    dob: string,
-    role: string,
-    loginId: string,
-    section: string,
-    lastActivity: string,
-    totalActivity: string
-}
-
 export default function Signin() {
     const [credentials, setCredentials] = useState<any>({});
     const dispatch = useDispatch();

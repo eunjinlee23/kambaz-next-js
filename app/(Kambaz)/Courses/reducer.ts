@@ -1,19 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid4 } from "uuid";
 
-/*
-export type Course = {
-    _id: string,
-    name: string,
-    number: string,
-    startDate: string,
-    endDate: string,
-    department: string,
-    credits: number,
-    description: string,
-    image: string
-}
-    */
 
 const initialState = {
     courses: [] as any,
