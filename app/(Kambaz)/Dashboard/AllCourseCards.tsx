@@ -117,7 +117,7 @@ export default function AllCourseCards({userId} : {
                 ?.map((course: any) => (
                     <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px "}}>
                         <Card>
-                            <Link href={`/Courses/${course._id}/Home`} 
+                            <Link href={`/Dashboard`} 
                                 className="wd-dashboard-course-link text-decoration-none text-dark" >
                                     <CardImg src={course.image} variant="top" width="100%" height={160} />
                                     <CardBody className="card-body">
