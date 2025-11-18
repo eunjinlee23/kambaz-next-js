@@ -39,6 +39,11 @@ export default function Profile() {
                         defaultValue={profile.username}
                         onChange={(e) => setProfile({ ...profile, username: e.target.value })}
                     />
+                    <FormControl id="wd-password" className="mb-2" type="password"
+                        placeholder="password"
+                        defaultValue={profile.password}
+                        onChange={(e) => setProfile({ ...profile, password: e.target.value })}
+                    />
                     <FormControl id="wd-password" className="mb-2" placeholder="First Name"
                         defaultValue={profile.firstName}
                         onChange = {(e) => setProfile({ ...profile, firstName: e.target.value })}
