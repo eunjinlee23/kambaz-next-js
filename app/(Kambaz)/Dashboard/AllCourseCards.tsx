@@ -52,7 +52,6 @@ export default function AllCourseCards({userId} : {
         let enrollment = {_id: 0, user: "", course: ""}
 
         const onAddNewEnrollment = async (courseId: string) => {
-            console.log("client enrollment", enrollment);
             const newEnrollment = await client.createEnrollment(enrollment, courseId);
             fetchCourses();
             fetchNotCourses();
@@ -61,7 +60,6 @@ export default function AllCourseCards({userId} : {
 
         const onDeleteEnrollment = async (currentUserId: string, courseId: string) => {
             const courseEnrolled = enrollments.find((e) => e.course === courseId && e.user === currentUserId);
-            console.log("courseEnrolled", courseEnrolled);
             if (courseEnrolled) {
                 const status = await client.deleteEnrollment(courseEnrolled._id);
                 dispatch(setEnrollments(enrollments.filter((enrollment) => enrollment._id !== courseEnrolled._id)));
@@ -81,9 +79,8 @@ export default function AllCourseCards({userId} : {
 
   return (
     <div>
-
+        
         <Row xs={1} md={5} className="g-4">
-
         {
             courses
                 .map((course: any) => (

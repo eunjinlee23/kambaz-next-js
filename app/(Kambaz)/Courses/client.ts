@@ -34,7 +34,6 @@ export const createCourse = async (course: any) => {
 
 export const createEnrollment = async (enrollment: any, courseId: string) => {
     const { data } = await axiosWithCredentials.post(`${USERS_API}/current/enrollments/${courseId}`, enrollment);
-    console.log("enrollment", enrollment)
     return data;
 }
 
@@ -67,7 +66,6 @@ export const createModuleForCourse = async (courseId: string, module: any) => {
 };
 
 export const deleteModule = async (moduleId: string) => {
-    console.log(moduleId)
     const response = await axios.delete(`${MODULES_API}/${moduleId}`);
     return response.data;
 };

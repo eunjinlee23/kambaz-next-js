@@ -35,7 +35,7 @@ export default function Dashboard() {
         }
     };
 
-    const [nmcourse, setnotmycourse] = useState();
+    const [nmcourse, setnotmycourse] = useState([]);
 
     const fetchNotCourses = async () => {
         try {
@@ -112,7 +112,6 @@ export default function Dashboard() {
 
                             <hr />
                             
-                            <hr />
                             {filterEnrollment ? 
                             <div>
                             <h2 id="wd-dashboard-published">Published Courses ({(enrollments.filter((e) => e.user === currentUser?._id)).length})</h2>
@@ -155,7 +154,7 @@ export default function Dashboard() {
 
                             :
                                 <div>
-                                <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
+                                <h2 id="wd-dashboard-published">Published Courses ({courses.length + nmcourse.length})</h2>
                                 <AllCourseCards userId={currentUser ? currentUser._id : ""}/> 
                                 </div>
                             }

@@ -51,8 +51,6 @@ export default function Assignments() {
         fetchAssignments();
     }, [])
 
-    console.log(assignments);
-
     return (
         <div id="wd-assignments">
             <AssignmentControls
