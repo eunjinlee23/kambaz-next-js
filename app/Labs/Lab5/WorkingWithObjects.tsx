@@ -74,10 +74,14 @@ export default function WorkingWithObjects() {
             onChange={(e) => 
                 setModule({...module, name: e.target.value})} />
         <hr />
+
+        <h4>Retrieve Module Object</h4>
         <a className="btn btn-primary me-2"
             href={`${MODULE_API_URL}`}>
             Get Module
-        </a>
+        </a><hr />
+
+        <h4>Retrieve Module Name</h4>
         <a className="btn btn-primary"
             href={`${MODULE_API_URL}/name`}>
             Get Module Name

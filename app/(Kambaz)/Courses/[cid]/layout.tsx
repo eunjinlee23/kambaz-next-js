@@ -18,6 +18,7 @@ export default function CoursesLayout(
         // const { courses } = useSelector((state: RootState) => state.coursesReducer);
         // const course = courses.find((course: any) => course._id === cid);
         const [open, setOpen] = useState("block");
+        
         const handleOpen = () => {
             open === "block" ? setOpen("none") : setOpen("block")
         }
