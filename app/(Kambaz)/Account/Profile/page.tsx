@@ -39,18 +39,18 @@ export default function Profile() {
                         defaultValue={profile.username}
                         onChange={(e) => setProfile({ ...profile, username: e.target.value })}
                     />
-                    <FormControl id="wd-password" className="mb-2"
+                    <FormControl id="wd-password" className="mb-2" placeholder="First Name"
                         defaultValue={profile.firstName}
                         onChange = {(e) => setProfile({ ...profile, firstName: e.target.value })}
                     />
-                    <FormControl id="wd-firstname" className="mb-2"
+                    <FormControl id="wd-firstname" className="mb-2" placeholder="Last Name"
                         defaultValue={profile.lastName}
                         onChange={(e) => setProfile({ ...profile, lastName: e.target.value })} />
-                    <FormControl id="wd-lastname"  className="mb-2"
+                    <FormControl id="wd-lastname"  className="mb-2" type="date"
                         defaultValue={profile.dob}
                         onChange={(e) => setProfile({ ...profile, dob: e.target.value })} />
                     <FormControl id="wd-email" className="mb-2"
-                        defaultValue={profile.email}
+                        defaultValue={profile.email} placeholder="aa@email.com"
                         onChange={(e) => setProfile({ ...profile, email: e.target.value })}
                         type="email"/>
                     <FormSelect id="wd-role" className="mb-2"
