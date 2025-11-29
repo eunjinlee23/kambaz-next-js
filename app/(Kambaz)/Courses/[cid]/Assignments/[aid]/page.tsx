@@ -30,7 +30,7 @@ export default function AssignmentEditor() {
     const dispatch = useDispatch();
 
     const fetchAssignment = async () => {
-        const assignment = await client.findAssignmentById(aid as string);
+        const assignment = await client.findAssignmentById(cid as string, aid as string);
         setAssignment(assignment);
     }
 
@@ -42,7 +42,7 @@ export default function AssignmentEditor() {
     }
 
     const onUpdateAssignment = async (assignment: any) => {
-        await client.updateAssignment(assignment);
+        await client.updateAssignment(cid as string, assignment);
         const newAssignments = assignments.map((a: any) => a._id === assignment._id ? assignment : a );
         dispatch(setAssignments(newAssignments));
     }
@@ -155,10 +155,8 @@ export default function AssignmentEditor() {
                 
             :
 
-            assignments.filter((assignment) => assignment.course === cid)
-            .filter((assignment) => assignment._id === aid)
-            .map((assignment) => (
-                <div key={assignment._id}>
+            
+                <div>
                     <h3>{assignment.title}</h3>
                     <hr />
                     <div className="d-flex">
@@ -168,14 +166,14 @@ export default function AssignmentEditor() {
                     </div>
                     <hr />
 
+                    <div>{assignment.description}</div>
+
                     <br /><br /><br /><br />
 
                     <Link href={`/Courses/${cid}/Assignments`} className="btn btn-secondary">
                         Previous
                     </Link>
                 </div>
-
-            ))
             }
 
 

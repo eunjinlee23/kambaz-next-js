@@ -108,13 +108,13 @@ export const deleteAssignment = async (courseId: string, assignmentId: string) =
     return response.data;
 }
 
-export const updateAssignment = async (assignment: any) => {
-    const { data } = await axios.put(`${ASSIGNMENT_API}/${assignment._id}`, assignment);
+export const updateAssignment = async (courseId: string, assignment: any) => {
+    const { data } = await axios.put(`${COURSES_API}/${courseId}/assignments/${assignment._id}`, assignment);
     return data;
 }
 
-export const findAssignmentById = async (assignmentId: string) => {
-    const response = await axios.get(`${ASSIGNMENT_API}/${assignmentId}`);
+export const findAssignmentById = async (courseId: string, assignmentId: string) => {
+    const response = await axios.get(`${COURSES_API}/${courseId}/assignments/${assignmentId}`);
     return response.data;
 }
 

@@ -27,12 +27,11 @@ export default function Assignments() {
     }
 
     const { currentUser } = useSelector((state: RootState) => state.accountReducer)
-
     const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
     const dispatch = useDispatch();
 
     const fetchAssignments = async () => {
-        const assignments = await client.findAssignmentsForCourse(String(cid));
+        const assignments = await client.findAssignmentsForCourse(cid as string);
         dispatch(setAssignments(assignments));
     }
 
@@ -51,6 +50,7 @@ export default function Assignments() {
         fetchAssignments();
     }, [])
 
+
     return (
         <div id="wd-assignments">
             <AssignmentControls
@@ -68,10 +68,9 @@ export default function Assignments() {
 
                     <ListGroup className="rounded-0">
                         {assignments
-                            .filter((assignment) => assignment.course === cid)
                             .map((assignment) => (
                                 <ListGroupItem key={assignment._id} className="wd-assignment-list-item p-3 ps-1 d-flex justify-content-between align-items-center">
-                                    <div className="d-flex align-items-center">
+                                    <div key={assignment._id} className="d-flex align-items-center">
                                         <AssignmentListButtons />
                                         <div className="ms-3 me-5">
                                             <Link onClick={() => dispatch(editAssignment(assignment._id))} href={`/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link text-black text-decoration-none">
