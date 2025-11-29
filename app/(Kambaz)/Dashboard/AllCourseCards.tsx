@@ -15,7 +15,7 @@ export default function AllCourseCards({userId} : {
     userId: string
 }) {
         const { courses } = useSelector((state: RootState) => state.coursesReducer);
-        const { enrollments } = useSelector((state: RootState) => state.enrollmentsReducer);
+        // const { enrollments } = useSelector((state: RootState) => state.enrollmentsReducer);
         const { currentUser } = useSelector((state: RootState) => state.accountReducer);
 
         const dispatch = useDispatch();
@@ -40,36 +40,42 @@ export default function AllCourseCards({userId} : {
                 }
         }
 
-        const fetchEnrollments = async () => {
-            try {
-                const enrollments = await client.getAllEnrollments();
-                dispatch(setEnrollments(enrollments));
-            } catch (error) {
-                console.error(error);
-            }
-        }
+        // const fetchEnrollments = async () => {
+        //     try {
+        //         const enrollments = await client.getAllEnrollments();
+        //         dispatch(setEnrollments(enrollments));
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // }
 
-        let enrollment = {_id: 0, user: "", course: ""}
+        // let enrollment = {_id: 0, user: "", course: ""}
 
         const onAddNewEnrollment = async (courseId: string) => {
-            const newEnrollment = await client.createEnrollment(enrollment, courseId);
+            // const newEnrollment = await client.createEnrollment(enrollment, courseId);
+            // fetchCourses();
+            // fetchNotCourses();
+            // dispatch(setEnrollments([...enrollments, newEnrollment]))
+            if (!courseId) return;
+            const e = await client.enrollIntoCourse(userId, courseId)
             fetchCourses();
             fetchNotCourses();
-            dispatch(setEnrollments([...enrollments, newEnrollment]))
         }
 
-        const onDeleteEnrollment = async (currentUserId: string, courseId: string) => {
-            const courseEnrolled = enrollments.find((e) => e.course === courseId && e.user === currentUserId);
-            if (courseEnrolled) {
-                const status = await client.deleteEnrollment(courseEnrolled._id);
-                dispatch(setEnrollments(enrollments.filter((enrollment) => enrollment._id !== courseEnrolled._id)));
-            }
+        const onDeleteEnrollment = async (courseId: string) => {
+            // const courseEnrolled = enrollments.find((e) => e.course === courseId && e.user === currentUserId);
+            // if (courseEnrolled) {
+            //     const status = await client.deleteEnrollment(courseEnrolled._id);
+            //     dispatch(setEnrollments(enrollments.filter((enrollment) => enrollment._id !== courseEnrolled._id)));
+            // }
+            if (!courseId) return;
+            const e = await client.unenrollFromCourse(userId, courseId);
             fetchCourses();
             fetchNotCourses();
         }
 
         useEffect(() => {
-            fetchEnrollments();
+            // fetchEnrollments();
             fetchCourses();
             fetchNotCourses();
         }, [currentUser])
@@ -98,7 +104,7 @@ export default function AllCourseCards({userId} : {
                                         <div className="d-flex justify-content-end">
                                         <Button onClick={(event) => {
                                             event.preventDefault();
-                                            onDeleteEnrollment(currentUser._id, course._id);
+                                            onDeleteEnrollment(course._id);
                                             }}
                                             className="btn btn-danger " >Unenroll</Button>
 
@@ -126,7 +132,7 @@ export default function AllCourseCards({userId} : {
                                         <div className="d-flex justify-content-end">
                                         <Button onClick={(event) => {
                                             event.preventDefault();
-                                            enrollment = {...enrollment, user: currentUser._id, course: course._id }
+                                            // enrollment = {...enrollment, user: currentUser._id, course: course._id }
                                             onAddNewEnrollment(course._id);
 
                                         }} className="btn-success float-end">Enroll</Button>

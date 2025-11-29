@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 import * as db from "../../../../Database";
 import { useSelector, useDispatch } from "react-redux";
 import { setAssignments, updateAssignment } from "../reducer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../../../../store";
 import Link from "next/link";
@@ -25,7 +25,14 @@ export default function AssignmentEditor() {
     const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
     const { currentUser } = useSelector((state: RootState) => state.accountReducer);
 
+    const [assignment, setAssignment] = useState<any>({})
+
     const dispatch = useDispatch();
+
+    const fetchAssignment = async () => {
+        const assignment = await client.findAssignmentById(aid as string);
+        setAssignment(assignment);
+    }
 
     const get_t = (a: Date) => {
         const date = a.toLocaleDateString('en-US', {month: 'short', day: '2-digit'});
@@ -40,28 +47,28 @@ export default function AssignmentEditor() {
         dispatch(setAssignments(newAssignments));
     }
     
+    useEffect(() => {
+        fetchAssignment();
+    }, [])
   return (
         <div id="wd-assignments-editor">
             {
             currentUser?.role === "FACULTY" ? 
-            assignments
-                .filter((assignment) => assignment.course === cid)
-                .filter((assignment) => assignment._id === aid)
-                .map((assignment) => (
+
                     <div key={assignment._id}>
                         <Form className="mb-4">
                             <Form.Group className="mb-3" id="wd-name">
                                 <Form.Label>Assignment Name</Form.Label>
-                                <Form.Control onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, title: e.target.value}))}}} type="text" placeholder="Enter assignment name" defaultValue={assignment.title} />
+                                <Form.Control onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, title: e.target.value})}}} type="text" placeholder="Enter assignment name" defaultValue={assignment.title} />
                             </Form.Group>
-                            <Form.Control as="textarea" rows={14} onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, description: e.target.value}))}}}
+                            <Form.Control as="textarea" rows={14} onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, description: e.target.value})}}}
                             defaultValue={assignment.description}/>
                         </Form>
 
                         <div className="pe-2">
                             <Row className="mb-3" id="wd-points">
                                 <Form.Label sm="4" className="text-end" column>Points</Form.Label>
-                                <Col sm="8"><Form.Control onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, points: e.target.value}))}}} type="number" defaultValue={assignment.points} /></Col>
+                                <Col sm="8"><Form.Control onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, points: e.target.value})}}} type="number" defaultValue={assignment.points} /></Col>
                             </Row>
 
                             <Row className="mb-3" id="wd-group">
@@ -125,17 +132,17 @@ export default function AssignmentEditor() {
 
                                         <Form.Group id="wd-due-date" className="mb-3">
                                             <Form.Label><b>Due</b></Form.Label>
-                                            <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, due: e.target.value}))}}} type="datetime-local" defaultValue={assignment.due} />
+                                            <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, due: e.target.value})}}} type="datetime-local" defaultValue={assignment.due} />
                                         </Form.Group>
 
                                         <Row>
                                             <Col id="wd-available-from">
                                                 <Form.Label><b>Available from</b></Form.Label>
-                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, available: e.target.value}))}}} type="datetime-local" defaultValue={assignment.available} />
+                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, available: e.target.value})}}} type="datetime-local" defaultValue={assignment.available} />
                                             </Col>
                                             <Col id="wd-available-until">
                                                 <Form.Label><b>Until</b></Form.Label> 
-                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {dispatch(updateAssignment( {...assignment, until: e.target.value}))}}} type="datetime-local" defaultValue={assignment.until} />
+                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, until: e.target.value})}}} type="datetime-local" defaultValue={assignment.until} />
                                             </Col>
                                         </Row>
                                     </fieldset>
@@ -145,7 +152,7 @@ export default function AssignmentEditor() {
                                         <br /><hr />
                 <EditorButtons prev={`${cid}`} assignment={assignment} updateAssignment={(assignment) => onUpdateAssignment(assignment)} />
                     </div>
-                ))
+                
             :
 
             assignments.filter((assignment) => assignment.course === cid)

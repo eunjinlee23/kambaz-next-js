@@ -12,35 +12,31 @@ export const fetchAllCourses = async () => {
     return data;
 }
 
-export const getAllEnrollments = async () => {
-    const { data } = await axios.get(ENROLLMENT_API);
-    return data;
-}
+// export const getAllEnrollments = async () => {
+//     const { data } = await axios.get(ENROLLMENT_API);
+//     return data;
+// }
 
 export const findMyCourses = async () => {
     const { data } = await axiosWithCredentials.get(`${USERS_API}/current/courses`);
     return data;
 }
 
-export const findNotMyCourses = async () => {
-    const { data } = await axiosWithCredentials.get(`${USERS_API}/current/notcourses`);
-    return data;
-}
-
 export const createCourse = async (course: any) => {
-    const { data } = await axiosWithCredentials.post(`${USERS_API}/current/courses`, course);
+    // const { data } = await axiosWithCredentials.post(`${USERS_API}/current/courses`, course);
+    const { data } = await axiosWithCredentials.post(`${COURSES_API}`, course)
     return data;
 }
 
-export const createEnrollment = async (enrollment: any, courseId: string) => {
-    const { data } = await axiosWithCredentials.post(`${USERS_API}/current/enrollments/${courseId}`, enrollment);
-    return data;
-}
+// export const createEnrollment = async (enrollment: any, courseId: string) => {
+//     const { data } = await axiosWithCredentials.post(`${USERS_API}/current/enrollments/${courseId}`, enrollment);
+//     return data;
+// }
 
-export const deleteEnrollment = async (enrollmentId: string) => {
-    const { data } = await axios.delete(`${ENROLLMENT_API}/${enrollmentId}`);
-    return data;
-}
+// export const deleteEnrollment = async (enrollmentId: string) => {
+//     const { data } = await axios.delete(`${ENROLLMENT_API}/${enrollmentId}`);
+//     return data;
+// }
 
 export const deleteCourse = async (id: string) => {
     const { data } = await axios.delete(`${COURSES_API}/${id}`);
@@ -65,13 +61,35 @@ export const createModuleForCourse = async (courseId: string, module: any) => {
     return response.data;
 };
 
-export const deleteModule = async (moduleId: string) => {
-    const response = await axios.delete(`${MODULES_API}/${moduleId}`);
+export const deleteModule = async (courseId: string, moduleId: string) => {
+    const response = await axios.delete(`${COURSES_API}/${courseId}/modules/${moduleId}`);
     return response.data;
 };
 
-export const updateModule = async (module: any) => {
-    const { data } = await axios.put(`${MODULES_API}/${module._id}`, module);
+export const updateModule = async (courseId: string, module: any) => {
+    const { data } = await axios.put(`${COURSES_API}/${courseId}/modules/${module._id}`, module);
+    return data;
+}
+
+export const enrollIntoCourse = async (userId: string, courseId: string) => {
+    const response = await axiosWithCredentials.post(`${USERS_API}/${userId}/courses/${courseId}`);
+    return response.data;
+}
+
+export const unenrollFromCourse = async (userId: string, courseId: string) => {
+    const response = await axiosWithCredentials.delete(`${USERS_API}/${userId}/courses/${courseId}`);
+    return response.data;
+}
+
+export const findUsersForCourse = async (courseId: string) => {
+    const response = await axios.get(`${COURSES_API}/${courseId}/users`);
+    return response.data;
+}
+
+// // // // 
+
+export const findNotMyCourses = async () => {
+    const { data } = await axiosWithCredentials.get(`${USERS_API}/current/notcourses`);
     return data;
 }
 
@@ -85,8 +103,8 @@ export const createAssignmentForCourse = async (courseId: string, assignment: an
     return response.data;
 }
 
-export const deleteAssignment = async (assignmentId: string) => {
-    const response = await axios.delete(`${ASSIGNMENT_API}/${assignmentId}`);
+export const deleteAssignment = async (courseId: string, assignmentId: string) => {
+    const response = await axios.delete(`${COURSES_API}/${courseId}/assignments/${assignmentId}`);
     return response.data;
 }
 

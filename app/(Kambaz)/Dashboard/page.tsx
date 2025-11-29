@@ -46,20 +46,20 @@ export default function Dashboard() {
         }
     }
 
-    const fetchEnrollments = async () => {
-        try {
-            const enrollments = await client.getAllEnrollments();
-            dispatch(setEnrollments(enrollments));
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    // const fetchEnrollments = async () => {
+    //     try {
+    //         const enrollments = await client.getAllEnrollments();
+    //         dispatch(setEnrollments(enrollments));
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     const onAddNewCourse = async () => {
         const newCourse = await client.createCourse(course);
         fetchCourses();
         fetchNotCourses();
-        fetchEnrollments();
+        // fetchEnrollments();
         dispatch(setCourses([ ...courses, newCourse ]));
     };
 
@@ -90,7 +90,14 @@ export default function Dashboard() {
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
     
-            <Button onClick={() => setFilterEnrollment(!filterEnrollment)} className="float-end ms-2">Enrollment</Button>
+            {/*<Button onClick={() => setFilterEnrollment(!filterEnrollment)} className="float-end ms-2">Enrollment</Button>*/}
+            {!filterEnrollment &&
+                <Button onClick={() => setFilterEnrollment(!filterEnrollment)} className="float-end ms-2">My Courses</Button>
+            }
+
+            {filterEnrollment &&
+                <Button onClick={() => setFilterEnrollment(!filterEnrollment)} className="float-end ms-2">All Courses</Button>
+            }
             
             <div id="wd-dashboard-courses">        
                     {
