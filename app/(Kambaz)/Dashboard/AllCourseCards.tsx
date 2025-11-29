@@ -80,12 +80,9 @@ export default function AllCourseCards({userId} : {
             fetchNotCourses();
         }, [currentUser])
 
-        
-        
-
   return (
     <div>
-        
+        <h2 id="wd-dashboard-published">Published Courses ({courses.length + nmcourses.length})</h2><hr />
         <Row xs={1} md={5} className="g-4">
         {
             courses

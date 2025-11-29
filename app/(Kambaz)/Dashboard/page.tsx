@@ -66,14 +66,18 @@ export default function Dashboard() {
     const onDeleteCourse = async (courseId: string) => {
         const status = await client.deleteCourse(courseId);
         dispatch(setCourses(courses.filter((course: any) => course._id !== courseId)));
+        fetchCourses();
+        fetchNotCourses();
     };
 
     const onUpdateCourse = async () => {
         await client.updateCourse(course);
         dispatch(setCourses(courses.map((c: any) => {
-            if (c._id === course._id) {return course;}
+            if (c._id === course._id) 
+                {return course;}
             else { return c;}
-        })));};
+        })));
+    };
 
 
     if (currentUser === null) {
@@ -121,7 +125,7 @@ export default function Dashboard() {
                             
                             {filterEnrollment ? 
                             <div>
-                            <h2 id="wd-dashboard-published">Published Courses ({(enrollments.filter((e) => e.user === currentUser?._id)).length})</h2>
+                            <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2><hr/>
                             <Row xs={1} md={5} className="g-4">
                                 {courses.map((course: any) => (
                                     <Col key={course?._id} className="wd-dashboard-course" style={{ width: "300px "}}>
@@ -161,7 +165,6 @@ export default function Dashboard() {
 
                             :
                                 <div>
-                                <h2 id="wd-dashboard-published">Published Courses ({courses.length + nmcourse.length})</h2>
                                 <AllCourseCards userId={currentUser ? currentUser._id : ""}/> 
                                 </div>
                             }
@@ -171,7 +174,8 @@ export default function Dashboard() {
                             
                             filterEnrollment ? 
                                 <div>
-                                <h2 id="wd-dashboard-published">Published Courses ({(enrollments.filter((e) => e.user === currentUser?._id)).length})</h2><hr />
+                                <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2><hr />
+                                
                                 <Row xs={1} md={5} className="g-4">
                                     {courses
                                         .map((course: any) => (
@@ -201,8 +205,6 @@ export default function Dashboard() {
 
                                 :
                                     <div>
-                                    <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
-                                    <hr />
                                     <AllCourseCards userId={currentUser ? currentUser._id : ""} /> 
 
                                     </div>
