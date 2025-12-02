@@ -132,17 +132,17 @@ export default function AssignmentEditor() {
 
                                         <Form.Group id="wd-due-date" className="mb-3">
                                             <Form.Label><b>Due</b></Form.Label>
-                                            <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, due: e.target.value})}}} type="datetime-local" defaultValue={assignment.due} />
+                                            <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, due: e.target.value})}}} type="datetime-local" defaultValue={assignment.due?.slice(0, 19)} />
                                         </Form.Group>
 
                                         <Row>
                                             <Col id="wd-available-from">
                                                 <Form.Label><b>Available from</b></Form.Label>
-                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, available: e.target.value})}}} type="datetime-local" defaultValue={assignment.available} />
+                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, available: e.target.value})}}} type="datetime-local" defaultValue={assignment.available?.slice(0, 19)} />
                                             </Col>
                                             <Col id="wd-available-until">
                                                 <Form.Label><b>Until</b></Form.Label> 
-                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, until: e.target.value})}}} type="datetime-local" defaultValue={assignment.until} />
+                                                <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, until: e.target.value})}}} type="datetime-local" defaultValue={assignment.until?.slice(0, 19)} />
                                             </Col>
                                         </Row>
                                     </fieldset>
@@ -160,7 +160,7 @@ export default function AssignmentEditor() {
                     <h3>{assignment.title}</h3>
                     <hr />
                     <div className="d-flex">
-                        <div><b>Due</b>: {get_t(new Date(assignment.due))}</div>
+                        <div><b>Due</b>: {get_t(new Date(assignment.due?.slice(0, 19)))}</div>
                         <div className="ms-5"><b>Points</b>: {assignment.points} </div>
                         <div> </div>
                     </div>

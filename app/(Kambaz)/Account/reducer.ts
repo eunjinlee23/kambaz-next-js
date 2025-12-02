@@ -7,7 +7,7 @@ type initialS = {
 
 
 const initialState: initialS = {
-    currentUser: null,
+    currentUser: null
 }
 
 

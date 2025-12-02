@@ -76,6 +76,7 @@ export default function Assignments() {
                                             <Link onClick={() => dispatch(editAssignment(assignment._id))} href={`/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link text-black text-decoration-none">
                                                 <b>{assignment.title}</b> <br />
                                             </Link>
+                                            
                                             <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> 
                                                   {get_t(new Date(assignment.available))} | <b>Due</b> {get_t(new Date(assignment.due))} | {assignment.points} pts</span>
                                         </div>
