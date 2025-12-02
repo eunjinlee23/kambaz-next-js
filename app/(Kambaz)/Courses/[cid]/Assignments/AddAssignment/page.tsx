@@ -31,8 +31,15 @@ export default function AddAssignmentEditor() {
 
     const onCreateAssignmentForCourse = async () => {
         if (!cid) return;
-        const newAssignment = { title: assignmentTitle, points: assignmentPoint, available: assignmentAvailable,
-                                due: assignmentDue, until: assignmentUntil, description: assignmentDescription, 
+        const availableDate = new Date(Date.UTC(Number(assignmentAvailable.slice(0, 4)), Number(assignmentAvailable.slice(5, 7)) - 1, Number(assignmentAvailable.slice(8, 10)), 
+            Number(assignmentAvailable.slice(11, 13)), Number(assignmentAvailable.slice(14, 16)), Number(assignmentAvailable.slice(18, 20))))
+        const newDue = new Date(Date.UTC(Number(assignmentDue.slice(0, 4)), Number(assignmentDue.slice(5, 7)) - 1, Number(assignmentDue.slice(8, 10)), 
+            Number(assignmentDue.slice(11, 13)), Number(assignmentDue.slice(14, 16)), Number(assignmentDue.slice(18, 20))))
+        const untilDate = new Date(Date.UTC(Number(assignmentUntil.slice(0, 4)), Number(assignmentUntil.slice(5, 7)) - 1, Number(assignmentUntil.slice(8, 10)), 
+            Number(assignmentUntil.slice(11, 13)), Number(assignmentUntil.slice(14, 16)), Number(assignmentUntil.slice(18, 20))))
+
+        const newAssignment = { title: assignmentTitle, points: assignmentPoint, available: availableDate,
+                                due: newDue, until: untilDate, description: assignmentDescription, 
                                 course: cid };
         const assignment = await client.createAssignmentForCourse(String(cid), newAssignment);
         dispatch(setAssignments([...assignments, assignment]));
