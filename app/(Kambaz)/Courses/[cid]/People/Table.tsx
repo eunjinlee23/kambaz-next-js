@@ -4,13 +4,17 @@ import { FaUserCircle } from "react-icons/fa";
 import PeopleDetails from "./Details";
 import Link from "next/link"
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+
 
 export default function PeopleTable({ users = [], fetchUsers }: {users?: any[]; fetchUsers: () => void;}) {
+    const { currentUser } = useSelector((state: RootState) => state.accountReducer);
     const [showDetails, setShowDetails] = useState(false);
     const [showUserId, setShowUserId] = useState<string | null>(null);
     return(
         <div id="wd-people-table">
-            {showDetails && (
+            {showDetails && currentUser.role === "ADMIN" && (
                 <PeopleDetails
                     uid={showUserId}
                     onClose={() => {
