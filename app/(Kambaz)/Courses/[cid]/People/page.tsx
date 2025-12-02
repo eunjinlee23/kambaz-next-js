@@ -23,6 +23,7 @@ export default function CoursePeople() {
     
     return (
         <div>
+            <h3>People</h3>
             <PeopleTable users={users} fetchUsers={fetchCourseUsers} />
         </div>
     )
