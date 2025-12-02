@@ -78,9 +78,10 @@ export default function Assignments() {
                                             </Link>
                                             
                                             <span className="fs-6 mb-0"><span className="text-danger">Multiple Modules</span> | <b>Not available until </b> 
-                                                  {get_t(new Date(assignment.available))} | <b>Due</b> {get_t(new Date(assignment.due))} | {assignment.points} pts</span>
+                                                  {get_t(new Date(assignment.available.slice(0, 19)))} | <b>Due</b> {get_t(new Date(assignment.due.slice(0, 19)))} | {assignment.points} pts</span>
                                         </div>
                                     </div>
+
                                     <AssignmentLessonButtons assignmentId={assignment._id} 
                                         deleteAssignment={(assignmentId) => {onDeleteAssignment(assignmentId)}} deleteShow={open}/>
                                 </ListGroupItem>

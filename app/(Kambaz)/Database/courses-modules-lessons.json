@@ -13,23 +13,23 @@
       { "_id": "A101", 
         "title": "Propulsion Assignment", 
         "points": 100, 
-        "available": "2023-01-16T07:59:00", 
-        "due": "2023-01-23T23:59:00", 
-        "until": "2023-01-27T23:59:00",
+        "available": "2023-01-16T07:59:00Z", 
+        "due": "2023-01-23T23:59:00Z", 
+        "until": "2023-01-27T23:59:00Z",
       "description": "This assignment is available online. \n\nThis assignment is about propulsion.\n\n Solve each problem and turn in the pdf file."},
       { "_id": "A102",
         "title": "Combustion Analysis",
         "points": 100,
-        "available": "2023-01-23T23:59:00", 
-        "due": "2023-01-30T23:59:00",
-        "until": "2023-02-03T23:59:00",
+        "available": "2023-01-23T23:59:00Z", 
+        "due": "2023-01-30T23:59:00Z",
+        "until": "2023-02-03T23:59:00Z",
         "description": "This assignment is available online. \n\nSolve all questions about combustion analysis."},
       { "_id": "A103", 
         "title": "Nozzle Design Project", 
         "points": 100, 
-        "available": "2023-02-06T23:59:00", 
-        "due": "2023-02-13T23:59:00", 
-        "until": "2023-02-17T23:59:00",
+        "available": "2023-02-06T23:59:00Z", 
+        "due": "2023-02-13T23:59:00Z", 
+        "until": "2023-02-17T23:59:00Z",
         "description": "This is a project about Nozzle Design. \n\nTurn in the all files related to your design."}
     ],
     "modules": [
@@ -116,24 +116,24 @@
       "title": "Aerodynamics Quiz", 
       
       "points": 100, 
-      "available": "2023-01-18T23:59:00", 
-      "due": "2023-01-25T23:59:00", 
-      "until": "2023-01-31T23:59:00",
+      "available": "2023-01-18T23:59:00Z", 
+      "due": "2023-01-25T23:59:00Z", 
+      "until": "2023-01-31T23:59:00Z",
       "description": "This is a Quiz about Aerodynamics. \n\nThe quiz should be submitted before the due date."},
       { "_id": "A202", 
       "title": "Flow Analysis", 
  
       "points": 100, 
-      "available": "2023-02-01T23:59:00",
-      "due": "2023-02-08T23:59:00", 
-      "until": "2023-02-14T23:59:00",
+      "available": "2023-02-01T23:59:00Z",
+      "due": "2023-02-08T23:59:00Z", 
+      "until": "2023-02-14T23:59:00Z",
       "description": "This assignment will helps you to understand more deep understanding about Flow Analysis. \n\nBy the due date, submit the files."},
       { "_id": "A203", 
         "title": "Heating Analysis", 
         "points": 100, 
-        "available": "2023-02-15T23:59:00", 
-        "due": "2023-02-22T23:59:00", 
-        "until": "2023-02-28T23:59:00", 
+        "available": "2023-02-15T23:59:00Z", 
+        "due": "2023-02-22T23:59:00Z", 
+        "until": "2023-02-28T23:59:00Z", 
         "description": "This assignment will helps you to understnad Heating Analysis. \n\nBy the deadline, submit your file."}
     ],
     "modules": [
@@ -165,11 +165,11 @@
     "image": "/images/spacecraft.jpg",
     "description": "This course delves into the principles and practices of spacecraft design, offering students a detailed understanding of the engineering and technology behind spacecraft systems. Key topics include spacecraft structure, propulsion, power systems, thermal control, and payload integration. Emphasizing both theoretical concepts and practical skills, the course prepares students for careers in the space industry, with a focus on innovative design and problem-solving in the context of current and future space missions",
     "assignments": [
-      { "_id": "A301", "title": "Structural Design Task", "points": 100, "available": "2023-01-16T23:59:00", "due": "2023-01-24T23:59:00", "until": "2023-01-27T23:59:00",
+      { "_id": "A301", "title": "Structural Design Task", "points": 100, "available": "2023-01-16T23:59:00Z", "due": "2023-01-24T23:59:00Z", "until": "2023-01-27T23:59:00Z",
     "description": "This assignment is covers all information about Structural Design. \n\nPlease submit the assignment by the deadline."},
-      { "_id": "A302", "title": "Orbital Calculations", "points": 100, "available": "2023-01-30T23:59:00", "due": "2023-02-06T23:59:00", "until": "2023-02-10T23:59:00",
+      { "_id": "A302", "title": "Orbital Calculations", "points": 100, "available": "2023-01-30T23:59:00Z", "due": "2023-02-06T23:59:00Z", "until": "2023-02-10T23:59:00Z",
     "description": "This assignment is about Orbital Calculations. \n\nUse all of the knowledges learned in class to solve each problem. \n\nSubmit the assignment by the deadline."},
-      { "_id": "A303", "title": "Systems Engineering Exam", "points": 100, "available": "2023-02-13T23:59:00", "due": "2023-02-20T23:59:00", "until": "2023-02-24T23:59:00",
+      { "_id": "A303", "title": "Systems Engineering Exam", "points": 100, "available": "2023-02-13T23:59:00Z", "due": "2023-02-20T23:59:00Z", "until": "2023-02-24T23:59:00Z",
     "description": "This is the exam about Systems Engineering. \n\nWithin the limited time, solve problems and submit. \n\nThis exam includes few multiple choices, fill in the blanks, short answer and calculations."}
     ],
     "modules": [
@@ -201,11 +201,11 @@
     "image": "/images/organicchem.jpg",
     "description": "Organic Chemistry is an in-depth course that explores the structure, properties, composition, and reactions of organic compounds and materials. The course covers various topics including hydrocarbons, functional groups, stereochemistry, and organic synthesis techniques. Students will learn about the mechanisms of organic reactions, spectroscopic methods for structure determination, and the role of organic chemistry in biological systems. Emphasis is placed on problem-solving and laboratory skills, preparing students for advanced studies in chemistry, medicine, and related fields.",
     "assignments": [
-      { "_id": "A401", "title": "Organic Chemistry Introduction Assignment", "points": 100, "available": "2023-01-12T23:59:00", "due": "2023-01-19T23:59:00", "until": "2024-06-26T23:59:00",
+      { "_id": "A401", "title": "Organic Chemistry Introduction Assignment", "points": 100, "available": "2023-01-12T23:59:00Z", "due": "2023-01-19T23:59:00Z", "until": "2024-06-26T23:59:00Z",
     "description": "This is an organic chemistry introuduction assignment. Please finish by the due date."},
-      { "_id": "A402", "title": "Organic Reaction Assignment", "points": 100, "available": "2023-01-26T23:59:00", "due": "2023-02-02T23:59:00", "until": "2023-02-09T23:59:00",
+      { "_id": "A402", "title": "Organic Reaction Assignment", "points": 100, "available": "2023-01-26T23:59:00Z", "due": "2023-02-02T23:59:00Z", "until": "2023-02-09T23:59:00Z",
     "description": "This is an assignment to practice deeply about organic reaction. \n\nThis should be submitted by the due date."},
-       { "_id": "A403", "title": "Organic Compounds Assignment", "points": 100, "available": "2023-02-09T23:59:00", "due": "2023-02-16T23:59:00", "until": "2023-02-23T23:59:00",
+       { "_id": "A403", "title": "Organic Compounds Assignment", "points": 100, "available": "2023-02-09T23:59:00Z", "due": "2023-02-16T23:59:00Z", "until": "2023-02-23T23:59:00Z",
     "description": "This is an Organic Compounds Assignment to build more knowledge about organic compounds. \n\nPlease finish by the due date."}
 
     ]
@@ -221,11 +221,11 @@
     "image": "/images/inorganicchem.jpg",
     "description": "Inorganic Chemistry focuses on the properties, structures, and behaviors of inorganic and organometallic compounds. This course covers a range of topics including coordination chemistry, metal complexes, bonding theories, symmetry, and crystal field theory. Students will also explore the role of inorganic chemistry in real-world applications such as catalysis, materials science, and bioinorganic processes. Laboratory work emphasizes synthesis and analysis of inorganic compounds, fostering a deeper understanding of theoretical concepts.",
     "assignments": [
-      { "_id": "A501", "title": "Inorganic Chemistry Introduction Assignment", "points": 100, "available": "2023-01-13T23:59:00", "due": "2023-01-20T23:59:00", "until": "2023-01-27T23:59:00",
+      { "_id": "A501", "title": "Inorganic Chemistry Introduction Assignment", "points": 100, "available": "2023-01-13T23:59:00Z", "due": "2023-01-20T23:59:00Z", "until": "2023-01-27T23:59:00Z",
     "description": "This is an inorganic chemistry introduction assignment to get brief knowedge about inorganic chemistry."},
-      { "_id": "A502", "title": "Bonding Assignment", "points": 100, "available": "2024-06-27T23:59:00", "due": "2023-02-03T23:59:00", "until": "2023-02-10T23:59:00",
+      { "_id": "A502", "title": "Bonding Assignment", "points": 100, "available": "2024-06-27T23:59:00Z", "due": "2023-02-03T23:59:00Z", "until": "2023-02-10T23:59:00Z",
     "description": "This is an assignment to practice bonding. \n\nAssignment should be submitted by the due date."},
-      { "_id": "A503", "title": "Reactivity Assignment", "points": 100, "available": "2023-02-10T23:59:00", "due": "2023-02-17T23:59:00", "until": "2023-02-24T23:59:00",
+      { "_id": "A503", "title": "Reactivity Assignment", "points": 100, "available": "2023-02-10T23:59:00Z", "due": "2023-02-17T23:59:00Z", "until": "2023-02-24T23:59:00Z",
     "description": "This is an assignment to learn more deep knowledge about reactivity in inorganic chemistry."}
     ]
   },
@@ -240,11 +240,11 @@
     "image": "/images/turquoise.jpg",
     "description": "Physical Chemistry merges the principles of physics and chemistry to understand the physical properties of molecules, the forces that act upon them, and the chemical reactions they undergo. Key topics include thermodynamics, kinetics, quantum mechanics, and spectroscopy. The course provides a comprehensive understanding of molecular behavior, reaction dynamics, and the application of mathematical methods in solving chemical problems. Labs focus on experimental techniques and data analysis, equipping students with skills necessary for research and advanced study in chemistry and related fields.",
     "assignments": [
-      { "_id": "A601", "title": "Physical Chemistry Introduction Quiz", "points": 40, "available": "2023-01-12T23:59:00", "due": "2023-01-14T23:59:00", "until": "2023-01-15T23:59:00",
+      { "_id": "A601", "title": "Physical Chemistry Introduction Quiz", "points": 40, "available": "2023-01-12T23:59:00Z", "due": "2023-01-14T23:59:00Z", "until": "2023-01-15T23:59:00Z",
     "description": "This is a physical chemistry introduction quiz allow students to get brief knowledge about physical chemistry."},
-  { "_id": "A602", "title": "Chemical Thermodynamics Assignment", "points": 100, "available": "2023-01-18T23:59:00", "due": "2023-01-25T23:59:00", "until": "2023-02-01T23:59:00",
+  { "_id": "A602", "title": "Chemical Thermodynamics Assignment", "points": 100, "available": "2023-01-18T23:59:00Z", "due": "2023-01-25T23:59:00Z", "until": "2023-02-01T23:59:00Z",
     "description": "This is an assignment covers chemical thermodynamics. \n\nUse what we've learned in the class to complete this assignment."},
-  { "_id": "A603", "title": "Chemical Kinetics Assignment", "points": 100, "available": "2023-01-25T23:59:00", "due": "2023-02-01T23:59:00", "until": "2023-02-08T23:59:00",
+  { "_id": "A603", "title": "Chemical Kinetics Assignment", "points": 100, "available": "2023-01-25T23:59:00Z", "due": "2023-02-01T23:59:00Z", "until": "2023-02-08T23:59:00Z",
     "description": "This is an assignment about chemical kinetics. \n\nThe assignment should be submitted by the due date."}
 
     ]
@@ -260,11 +260,11 @@
     "image": "/images/bluish.jpg",
     "description": "This course offers an exploration of the ancient languages and scripts found throughout Middle-earth, including Elvish (Sindarin and Quenya), Dwarvish (Khuzdul), and the Black Speech of Mordor. Students will learn the historical and cultural contexts of these languages, their linguistic structures, and their usage in various inscriptions and texts. Emphasis is on understanding the philological aspects and the role of language in shaping Middle-earth's history and lore.",
     "assignments": [
-      { "_id": "A701", "title": "Introduction Quiz", "points": 50, "available": "2023-01-13T23:59:00", "due": "2023-01-14T23:59:00", "until": "2023-01-16T23:59:00",
+      { "_id": "A701", "title": "Introduction Quiz", "points": 50, "available": "2023-01-13T23:59:00Z", "due": "2023-01-14T23:59:00Z", "until": "2023-01-16T23:59:00Z",
     "description": "This is a introduction quiz for our course: Ancient Languages and Scripts of Middle-earth."},
-  { "_id": "A702", "title": "Elvish Assignmenet", "points": 100, "available": "2023-01-20T23:59:00", "due": "2023-01-27T23:59:00", "until": "2023-02-03T23:59:00",
+  { "_id": "A702", "title": "Elvish Assignmenet", "points": 100, "available": "2023-01-20T23:59:00Z", "due": "2023-01-27T23:59:00Z", "until": "2023-02-03T23:59:00Z",
     "description": "This is an assigment allows students to practice Elvish language."},
-  { "_id": "A703", "title": "Other Languages Assignment", "points": 100, "available": "2023-01-27T23:59:00", "due": "2023-02-03T23:59:00", "until": "2023-02-10T23:59:00",
+  { "_id": "A703", "title": "Other Languages Assignment", "points": 100, "available": "2023-01-27T23:59:00Z", "due": "2023-02-03T23:59:00Z", "until": "2023-02-10T23:59:00Z",
     "description": "This is an assignment to get information of other languages. \n\nPlease finish before the due date."}
 
     ],
@@ -281,11 +281,11 @@
     "image": "/images/green.jpg",
     "description": "This course explores the complex relationships and diplomatic interactions among the different races of Middle-earth: Elves, Men, Dwarves, and Wizards. Topics include the study of historical alliances, conflicts, and the role of leadership and wisdom in maintaining peace. Students will engage in discussions and case studies on key events in Middle-earth's history, such as the Council of Elrond and the War of the Ring, to understand the principles of diplomacy and conflict resolution in a multi-species context.",
     "assignments": [
-      { "_id": "A801", "title": "Middle-earth Races Quiz", "points": 40, "available": "2023-01-17T23:59:00", "due": "2023-01-24T23:59:00", "until": "2023-01-25T23:59:00",
+      { "_id": "A801", "title": "Middle-earth Races Quiz", "points": 40, "available": "2023-01-17T23:59:00Z", "due": "2023-01-24T23:59:00Z", "until": "2023-01-25T23:59:00Z",
     "description": "This is a quiz that covers the middle-earth races. \n\nThis should be submitted by the due date."},
-  { "_id": "A802", "title": "Alliances and Conflicts Assignment", "points": 100, "available": "2023-01-31T23:59:00", "due": "2023-02-07T23:59:00", "until": "2023-02-10T23:59:00",
+  { "_id": "A802", "title": "Alliances and Conflicts Assignment", "points": 100, "available": "2023-01-31T23:59:00Z", "due": "2023-02-07T23:59:00Z", "until": "2023-02-10T23:59:00Z",
     "description": "This is an assignment that covers the alliances and conflicts. \n\nPlease submit it by the due date."},
-  { "_id": "A803", "title": "Friendship Among Races Assignment", "points": 100, "available": "2023-02-14T23:59:00", "due": "2023-02-21T23:59:00", "until": "2023-02-24T23:59:00",
+  { "_id": "A803", "title": "Friendship Among Races Assignment", "points": 100, "available": "2023-02-14T23:59:00Z", "due": "2023-02-21T23:59:00Z", "until": "2023-02-24T23:59:00Z",
     "description": "This is an assignment that covers the friendship among races. \n\nThis should be submitted by the due date."}
     ],
     "author": "654f9ec2ea7ead465908d1e3"

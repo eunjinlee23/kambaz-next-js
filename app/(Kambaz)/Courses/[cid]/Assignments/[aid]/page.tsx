@@ -41,8 +41,21 @@ export default function AssignmentEditor() {
         return `${date} by ${t}${z}`;
     }
 
+
     const onUpdateAssignment = async (assignment: any) => {
-        await client.updateAssignment(cid as string, assignment);
+        const dueDate = new Date(Date.UTC(Number(assignment.due.slice(0, 4)), Number(assignment.due.slice(5, 7)) - 1, Number(assignment.due.slice(8, 10)), 
+            Number(assignment.due.slice(11, 13)), Number(assignment.due.slice(14, 16)), Number(assignment.due.slice(18, 20))))
+
+        const availableDate = new Date(Date.UTC(Number(assignment.available.slice(0, 4)), Number(assignment.available.slice(5, 7)) - 1, Number(assignment.available.slice(8, 10)), 
+            Number(assignment.available.slice(11, 13)), Number(assignment.available.slice(14, 16)), Number(assignment.available.slice(18, 20))))
+
+        const untilDate = new Date(Date.UTC(Number(assignment.until.slice(0, 4)), Number(assignment.until.slice(5, 7)) - 1, Number(assignment.until.slice(8, 10)), 
+            Number(assignment.until.slice(11, 13)), Number(assignment.until.slice(14, 16)), Number(assignment.until.slice(18, 20))))
+
+        const timeSetAssignment = {...assignment, due: dueDate, available: availableDate, until: untilDate}
+
+
+        await client.updateAssignment(cid as string, timeSetAssignment);
         const newAssignments = assignments.map((a: any) => a._id === assignment._id ? assignment : a );
         dispatch(setAssignments(newAssignments));
     }
@@ -132,7 +145,8 @@ export default function AssignmentEditor() {
 
                                         <Form.Group id="wd-due-date" className="mb-3">
                                             <Form.Label><b>Due</b></Form.Label>
-                                            <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, due: e.target.value})}}} type="datetime-local" defaultValue={assignment.due?.slice(0, 19)} />
+                                            <div>{assignment.due}</div>
+                                            <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, due: e.target.value})}}} type="datetime-local" value={assignment.due?.slice(0, 19)} />
                                         </Form.Group>
 
                                         <Row>
