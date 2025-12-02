@@ -145,7 +145,6 @@ export default function AssignmentEditor() {
 
                                         <Form.Group id="wd-due-date" className="mb-3">
                                             <Form.Label><b>Due</b></Form.Label>
-                                            <div>{assignment.due}</div>
                                             <Form.Control  onChange={(e) => {if (currentUser?.role === "FACULTY") {setAssignment( {...assignment, due: e.target.value})}}} type="datetime-local" value={assignment.due?.slice(0, 19)} />
                                         </Form.Group>
 
